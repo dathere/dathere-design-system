@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #fff; color: var(--dh-text-primary); }
+  .stack { display: flex; flex-direction: column; gap: 18px; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .lbl { width: 110px; font: var(--dh-type-code-01); color: var(--dh-text-secondary); }
+
+  .tag       { font: var(--dh-type-label-01); padding: 4px 10px; border-radius: var(--dh-radius-pill); background: var(--dh-blue-20); color: var(--dh-blue-90); border: 0; }
+  .tag.gray  { background: var(--dh-gray-20); color: var(--dh-gray-100); }
+  .tag.green { background: #defbe6;          color: #044317; }
+  .tag.red   { background: #ffd7d9;          color: #750e13; }
+  .tag.yel   { background: #fcf4d6;          color: #483700; }
+
+  .badge      { font: var(--dh-type-label-01); padding: 2px 6px; border-radius: var(--dh-radius-sm); background: var(--dh-gray-90); color: var(--dh-white); font-weight: 600; }
+  .badge.blue { background: var(--dh-blue-60); }
+  .badge.red  { background: var(--dh-red-60); }
+
+  .chip       { font: var(--dh-type-code-01); padding: 3px 8px; border-radius: var(--dh-radius-sm); background: var(--dh-layer-01); color: var(--dh-text-primary); border: 1px solid var(--dh-border-subtle-01); }
+</style></head>
+<body>
+  <div class="stack">
+    <div class="row">
+      <span class="lbl">tag (pill)</span>
+      <span class="tag">water-quality</span>
+      <span class="tag gray">CSV</span>
+      <span class="tag green">Validated</span>
+      <span class="tag red">Invalid schema</span>
+      <span class="tag yel">Draft</span>
+    </div>
+    <div class="row">
+      <span class="lbl">badge</span>
+      <span class="badge">NEW</span>
+      <span class="badge blue">v2.4</span>
+      <span class="badge red">3</span>
+      <span class="badge" style="background: var(--dh-gray-30); color: var(--dh-text-primary);">deprecated</span>
+    </div>
+    <div class="row">
+      <span class="lbl">code chip</span>
+      <span class="chip">qsv stats</span>
+      <span class="chip">--polars</span>
+      <span class="chip">data.csv</span>
+    </div>
+  </div>
+</body></html>

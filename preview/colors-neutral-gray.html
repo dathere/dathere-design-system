@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #ffffff; }
+  .row { display: flex; gap: 12px; }
+  .swatch { flex: 1; min-height: 120px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; font: var(--dh-type-caption-01); border: 1px solid transparent; }
+  .swatch.bordered { border-color: var(--dh-border-subtle-01); }
+  .swatch .top { display: flex; justify-content: space-between; }
+  .swatch .name { font: var(--dh-type-heading-01); }
+  .swatch .hex  { font: var(--dh-type-code-01); opacity: 0.85; }
+  .swatch .ramp { font: var(--dh-type-code-01); opacity: 0.7; }
+  .light-text { color: var(--dh-text-on-color); }
+  .dark-text  { color: var(--dh-text-primary); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="swatch bordered dark-text" style="background: var(--dh-white);">
+      <div class="top"><span class="name">white</span><span class="hex">#FFFFFF</span></div><span class="ramp">background</span>
+    </div>
+    <div class="swatch dark-text" style="background: var(--dh-gray-10);">
+      <div class="top"><span class="name">gray&nbsp;10</span><span class="hex">#F4F4F4</span></div><span class="ramp">layer-01</span>
+    </div>
+    <div class="swatch dark-text" style="background: var(--dh-gray-20);">
+      <div class="top"><span class="name">gray&nbsp;20</span><span class="hex">#E0E0E0</span></div><span class="ramp">border-subtle</span>
+    </div>
+    <div class="swatch dark-text" style="background: var(--dh-gray-30);">
+      <div class="top"><span class="name">gray&nbsp;30</span><span class="hex">#C6C6C6</span></div><span class="ramp">border</span>
+    </div>
+    <div class="swatch dark-text" style="background: var(--dh-gray-40);">
+      <div class="top"><span class="name">gray&nbsp;40</span><span class="hex">#A8A8A8</span></div><span class="ramp">disabled</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-gray-50);">
+      <div class="top"><span class="name">gray&nbsp;50</span><span class="hex">#8D8D8D</span></div><span class="ramp">border-strong</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-gray-60);">
+      <div class="top"><span class="name">gray&nbsp;60</span><span class="hex">#6F6F6F</span></div><span class="ramp">text-helper</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-gray-70);">
+      <div class="top"><span class="name">gray&nbsp;70</span><span class="hex">#525252</span></div><span class="ramp">text-secondary</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-gray-80);">
+      <div class="top"><span class="name">gray&nbsp;80</span><span class="hex">#393939</span></div><span class="ramp">bg-inverse</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-gray-90);">
+      <div class="top"><span class="name">gray&nbsp;90</span><span class="hex">#262626</span></div><span class="ramp">code bg</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-gray-100);">
+      <div class="top"><span class="name">gray&nbsp;100</span><span class="hex">#161616</span></div><span class="ramp">text-primary</span>
+    </div>
+  </div>
+</body></html>

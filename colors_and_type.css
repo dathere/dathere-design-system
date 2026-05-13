@@ -1,0 +1,291 @@
+/* =============================================================================
+   datHere Design System — Foundations
+   -----------------------------------------------------------------------------
+   datHere is a data-infrastructure company (CKAN DMS, qsv pro, qsv CLI,
+   AI Chatbot, AI-Ready Data). Its visual identity is built on top of the
+   IBM Carbon Design System "white" theme with a tighter brand-blue accent
+   pulled from the wordmark.
+
+   Source palette  : Carbon v11 tokens (blue + cool gray scales)
+   Brand reference : assets/logo-datHere-primary-dark-bg.png
+                     wordmark blue ≈ #0F62FE  (== Carbon blue60)
+                     hex-icon navy ≈ #001D6C  (== Carbon blue90)
+
+   Load this file before any UI to expose datHere/Carbon tokens as CSS vars.
+   ========================================================================== */
+
+/* -- Webfonts ---------------------------------------------------------------
+   IBM Plex Sans / Plex Mono / Plex Serif — Carbon's default type families.
+   Loaded from Google Fonts (no local TTFs in this project — flagged in
+   README.md as a substitution candidate if you need pixel-perfect glyphs).
+*/
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@300;400;600&display=swap");
+
+:root {
+  /* =========================================================================
+     1. BASE COLOR SCALE — raw Carbon tokens. Reference these in tooling /
+        derived tokens, but prefer the *semantic* tokens below in UI code.
+     ====================================================================== */
+
+  /* Brand blue scale */
+  --dh-blue-10:  #edf5ff;
+  --dh-blue-20:  #d0e2ff;
+  --dh-blue-30:  #a6c8ff;
+  --dh-blue-40:  #78a9ff;
+  --dh-blue-50:  #4589ff;
+  --dh-blue-60:  #0f62fe;   /* ← brand primary (logo wordmark) */
+  --dh-blue-70:  #0043ce;
+  --dh-blue-80:  #002d9c;
+  --dh-blue-90:  #001d6c;   /* ← brand navy (logo hex icon) */
+  --dh-blue-100: #001141;
+
+  /* Neutral gray (Carbon "Gray") */
+  --dh-gray-10:  #f4f4f4;
+  --dh-gray-20:  #e0e0e0;
+  --dh-gray-30:  #c6c6c6;
+  --dh-gray-40:  #a8a8a8;
+  --dh-gray-50:  #8d8d8d;
+  --dh-gray-60:  #6f6f6f;
+  --dh-gray-70:  #525252;
+  --dh-gray-80:  #393939;
+  --dh-gray-90:  #262626;
+  --dh-gray-100: #161616;
+  --dh-white:    #ffffff;
+  --dh-black:    #000000;
+
+  /* Support / status (Carbon "Support") */
+  --dh-red-50:    #fa4d56;   /* error inverse */
+  --dh-red-60:    #da1e28;   /* error */
+  --dh-green-50:  #24a148;   /* success */
+  --dh-green-60:  #198038;
+  --dh-yellow-30: #f1c21b;   /* warning */
+  --dh-yellow-60: #b28600;
+  --dh-orange-40: #ff832b;   /* caution-major */
+  --dh-purple-60: #8a3ffc;   /* link visited / caution-undefined */
+  --dh-cyan-70:   #00539a;
+  --dh-teal-60:   #007d79;   /* syntax tag */
+
+  /* =========================================================================
+     2. SEMANTIC TOKENS — Carbon white theme. Use these in UI.
+     ====================================================================== */
+
+  /* — Background — */
+  --dh-background:           var(--dh-white);
+  --dh-background-inverse:   var(--dh-gray-80);
+  --dh-background-brand:     var(--dh-blue-60);
+  --dh-background-hover:     rgba(141, 141, 141, 0.12);
+  --dh-background-active:    rgba(141, 141, 141, 0.50);
+  --dh-background-selected:  rgba(141, 141, 141, 0.20);
+
+  /* — Layer (cards / panels / containers) — */
+  --dh-layer-01:             var(--dh-gray-10);
+  --dh-layer-02:             var(--dh-white);
+  --dh-layer-03:             var(--dh-gray-10);
+  --dh-layer-hover-01:       #e8e8e8;
+  --dh-layer-selected-01:    var(--dh-gray-20);
+  --dh-layer-accent-01:      var(--dh-gray-20);
+
+  /* — Field (form inputs) — */
+  --dh-field-01:             var(--dh-gray-10);
+  --dh-field-02:             var(--dh-white);
+
+  /* — Border — */
+  --dh-border-subtle-00:     var(--dh-gray-20);
+  --dh-border-subtle-01:     var(--dh-gray-30);
+  --dh-border-strong-01:     var(--dh-gray-50);
+  --dh-border-inverse:       var(--dh-gray-100);
+  --dh-border-interactive:   var(--dh-blue-60);
+  --dh-border-disabled:      var(--dh-gray-30);
+  --dh-border-tile-01:       var(--dh-gray-30);
+
+  /* — Text — */
+  --dh-text-primary:         var(--dh-gray-100);
+  --dh-text-secondary:       var(--dh-gray-70);
+  --dh-text-helper:          var(--dh-gray-60);
+  --dh-text-placeholder:     rgba(22, 22, 22, 0.40);
+  --dh-text-on-color:        var(--dh-white);
+  --dh-text-inverse:         var(--dh-white);
+  --dh-text-error:           var(--dh-red-60);
+  --dh-text-disabled:        rgba(22, 22, 22, 0.25);
+
+  /* — Link — */
+  --dh-link-primary:         var(--dh-blue-60);
+  --dh-link-primary-hover:   var(--dh-blue-70);
+  --dh-link-visited:         var(--dh-purple-60);
+  --dh-link-inverse:         var(--dh-blue-40);
+
+  /* — Icon — */
+  --dh-icon-primary:         var(--dh-gray-100);
+  --dh-icon-secondary:       var(--dh-gray-70);
+  --dh-icon-on-color:        var(--dh-white);
+  --dh-icon-interactive:     var(--dh-blue-60);
+
+  /* — Support / status — */
+  --dh-support-error:        var(--dh-red-60);
+  --dh-support-success:      var(--dh-green-50);
+  --dh-support-warning:      var(--dh-yellow-30);
+  --dh-support-info:         var(--dh-blue-70);
+
+  /* — Focus — */
+  --dh-focus:                var(--dh-blue-60);
+  --dh-focus-inset:          var(--dh-white);
+
+  /* — Interactive (buttons, controls) — */
+  --dh-interactive:          var(--dh-blue-60);
+  --dh-highlight:            var(--dh-blue-20);
+  --dh-overlay:              rgba(0, 0, 0, 0.60);
+  --dh-shadow:               rgba(0, 0, 0, 0.30);
+
+  /* =========================================================================
+     3. TYPE — IBM Plex families + Carbon "productive" + "expressive" scales.
+        Carbon distinguishes two scales:
+          • productive — dense product UI (tables, forms, inspectors)
+          • expressive — marketing pages, hero copy, editorial
+        Defaults below are productive; expressive is exposed for landing /
+        marketing surfaces.
+     ====================================================================== */
+
+  --dh-font-sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+                   "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --dh-font-mono:  "IBM Plex Mono", "SF Mono", Menlo, Consolas,
+                   "Liberation Mono", monospace;
+  --dh-font-serif: "IBM Plex Serif", Georgia, Cambria, "Times New Roman",
+                   Times, serif;
+
+  /* Productive type — base/body */
+  --dh-type-caption-01:        400 12px/16px var(--dh-font-sans);   /* meta, captions */
+  --dh-type-label-01:          400 12px/16px var(--dh-font-sans);   /* form labels */
+  --dh-type-helper-text-01:    400 12px/16px var(--dh-font-sans);   /* helper text */
+  --dh-type-body-short-01:     400 14px/18px var(--dh-font-sans);   /* dense body */
+  --dh-type-body-long-01:      400 14px/20px var(--dh-font-sans);   /* paragraphs */
+  --dh-type-body-short-02:     400 16px/22px var(--dh-font-sans);
+  --dh-type-body-long-02:      400 16px/24px var(--dh-font-sans);
+  --dh-type-code-01:           400 12px/16px var(--dh-font-mono);
+  --dh-type-code-02:           400 14px/20px var(--dh-font-mono);
+
+  /* Productive headings */
+  --dh-type-heading-01:        600 14px/18px var(--dh-font-sans);
+  --dh-type-heading-02:        600 16px/22px var(--dh-font-sans);
+  --dh-type-heading-03:        400 20px/28px var(--dh-font-sans);
+  --dh-type-heading-04:        400 28px/36px var(--dh-font-sans);
+  --dh-type-heading-05:        400 32px/40px var(--dh-font-sans);
+  --dh-type-heading-06:        300 42px/50px var(--dh-font-sans);
+  --dh-type-heading-07:        300 54px/64px var(--dh-font-sans);
+
+  /* Expressive — marketing / hero. Use letter-spacing -0.01em-ish on these. */
+  --dh-type-expressive-03:     400 20px/28px var(--dh-font-sans);
+  --dh-type-expressive-04:     400 28px/36px var(--dh-font-sans);
+  --dh-type-expressive-05:     300 36px/44px var(--dh-font-sans);
+  --dh-type-expressive-06:     600 42px/50px var(--dh-font-sans);
+
+  /* Display — used sparingly, for editorial / brand moments */
+  --dh-type-display-01:        300 54px/64px var(--dh-font-sans);
+  --dh-type-display-02:        600 54px/64px var(--dh-font-sans);
+  --dh-type-display-03:        300 84px/88px var(--dh-font-sans);
+  --dh-type-display-04:        300 122px/130px var(--dh-font-sans);
+
+  /* =========================================================================
+     4. SPACING — Carbon 8-point grid (with smaller increments at the start).
+        Use these for padding/margins/gaps; never inline magic numbers.
+     ====================================================================== */
+  --dh-spacing-01:  0.125rem;   /*  2px */
+  --dh-spacing-02:  0.25rem;    /*  4px */
+  --dh-spacing-03:  0.5rem;     /*  8px */
+  --dh-spacing-04:  0.75rem;    /* 12px */
+  --dh-spacing-05:  1rem;       /* 16px */
+  --dh-spacing-06:  1.5rem;     /* 24px */
+  --dh-spacing-07:  2rem;       /* 32px */
+  --dh-spacing-08:  2.5rem;     /* 40px */
+  --dh-spacing-09:  3rem;       /* 48px */
+  --dh-spacing-10:  4rem;       /* 64px */
+  --dh-spacing-11:  5rem;       /* 80px */
+  --dh-spacing-12:  6rem;       /* 96px */
+  --dh-spacing-13:  10rem;      /* 160px */
+
+  /* =========================================================================
+     5. SHAPE — Carbon is famously *square*. Radii are sparing; mostly 0.
+        Pills are reserved for tags / chips. Buttons are flat rectangles.
+     ====================================================================== */
+  --dh-radius-none:   0;
+  --dh-radius-sm:     2px;      /* badges, inline tags */
+  --dh-radius-md:     4px;      /* cards (sparingly), some marketing tiles */
+  --dh-radius-pill:   999px;    /* CKAN-themed pill tags only */
+
+  /* =========================================================================
+     6. ELEVATION — flat by default. Drop shadows are subtle and brief.
+     ====================================================================== */
+  --dh-shadow-sm:  0 1px 2px rgba(0,0,0,0.08);
+  --dh-shadow-md:  0 2px 6px rgba(0,0,0,0.10);
+  --dh-shadow-lg:  0 8px 24px rgba(0,0,0,0.14);
+
+  /* =========================================================================
+     7. MOTION — Carbon "productive" easing. Snappy, non-bouncy.
+     ====================================================================== */
+  --dh-motion-fast-01:    70ms;
+  --dh-motion-fast-02:    110ms;
+  --dh-motion-moderate-01: 150ms;
+  --dh-motion-moderate-02: 240ms;
+  --dh-motion-slow-01:    400ms;
+  --dh-motion-slow-02:    700ms;
+
+  /* Carbon easing curves */
+  --dh-ease-productive-standard:  cubic-bezier(0.2, 0, 0.38, 0.9);
+  --dh-ease-productive-entrance:  cubic-bezier(0, 0, 0.38, 0.9);
+  --dh-ease-productive-exit:      cubic-bezier(0.2, 0, 1, 0.9);
+  --dh-ease-expressive-standard:  cubic-bezier(0.4, 0.14, 0.3, 1);
+  --dh-ease-expressive-entrance:  cubic-bezier(0, 0, 0.3, 1);
+  --dh-ease-expressive-exit:      cubic-bezier(0.4, 0.14, 1, 1);
+
+  /* =========================================================================
+     8. LAYOUT — 16-col Carbon grid. Container widths and gutters.
+     ====================================================================== */
+  --dh-container-sm:    640px;
+  --dh-container-md:    768px;
+  --dh-container-lg:    1056px;
+  --dh-container-xl:    1312px;
+  --dh-container-max:   1584px;
+  --dh-grid-gutter:     2rem;   /* 32px (16px each side) */
+}
+
+/* ============================================================================
+   SEMANTIC HTML DEFAULTS — applies dh-type-* to common elements so plain
+   prose looks correct without manual class plumbing. Override per-component
+   as needed.
+   ========================================================================== */
+html {
+  font-family: var(--dh-font-sans);
+  font-size: 16px;
+  color: var(--dh-text-primary);
+  background: var(--dh-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font: var(--dh-type-body-long-01);
+  color: var(--dh-text-primary);
+}
+
+h1, .dh-h1 { font: var(--dh-type-heading-06); letter-spacing: -0.01em; color: var(--dh-text-primary); }
+h2, .dh-h2 { font: var(--dh-type-heading-05); letter-spacing: 0;        color: var(--dh-text-primary); }
+h3, .dh-h3 { font: var(--dh-type-heading-04); letter-spacing: 0;        color: var(--dh-text-primary); }
+h4, .dh-h4 { font: var(--dh-type-heading-03);                            color: var(--dh-text-primary); }
+h5, .dh-h5 { font: var(--dh-type-heading-02);                            color: var(--dh-text-primary); }
+h6, .dh-h6 { font: var(--dh-type-heading-01);                            color: var(--dh-text-primary); }
+
+p          { font: var(--dh-type-body-long-01); color: var(--dh-text-primary); }
+small      { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); }
+strong     { font-weight: 600; }
+code, kbd  { font: var(--dh-type-code-01); color: var(--dh-text-primary); background: var(--dh-layer-01); padding: 1px 4px; }
+pre        { font: var(--dh-type-code-02); color: var(--dh-text-primary); background: var(--dh-gray-90); color: var(--dh-white); padding: var(--dh-spacing-05); overflow-x: auto; }
+pre code   { background: transparent; color: inherit; padding: 0; }
+
+a          { color: var(--dh-link-primary); text-decoration: none; transition: color var(--dh-motion-fast-02) var(--dh-ease-productive-standard); }
+a:hover    { color: var(--dh-link-primary-hover); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:visited  { color: var(--dh-link-visited); }
+a:focus-visible { outline: 2px solid var(--dh-focus); outline-offset: 1px; }
+
+hr         { border: 0; border-top: 1px solid var(--dh-border-subtle-01); margin: var(--dh-spacing-06) 0; }
+
+::selection { background: var(--dh-blue-20); color: var(--dh-text-primary); }

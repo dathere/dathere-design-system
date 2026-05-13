@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; background: #fff; color: var(--dh-text-primary); }
+  .row { display: flex; gap: 20px; align-items: stretch; }
+  .card { flex: 1; padding: 16px; background: var(--dh-layer-01); border: 1px solid var(--dh-border-subtle-01); display: flex; flex-direction: column; gap: 8px; }
+  .sample { height: 60px; background: var(--dh-blue-60); }
+  .name { font: var(--dh-type-heading-01); }
+  .role { font: var(--dh-type-caption-01); color: var(--dh-text-helper); }
+  .tok  { font: var(--dh-type-code-01); color: var(--dh-text-secondary); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="card">
+      <div class="sample" style="border-radius: 0;"></div>
+      <span class="name">none — 0</span>
+      <span class="tok">--dh-radius-none</span>
+      <span class="role">default; buttons, inputs, cards, modals</span>
+    </div>
+    <div class="card">
+      <div class="sample" style="border-radius: 2px;"></div>
+      <span class="name">sm — 2px</span>
+      <span class="tok">--dh-radius-sm</span>
+      <span class="role">badges, inline tags, code chips</span>
+    </div>
+    <div class="card">
+      <div class="sample" style="border-radius: 4px;"></div>
+      <span class="name">md — 4px</span>
+      <span class="tok">--dh-radius-md</span>
+      <span class="role">marketing tiles (sparingly)</span>
+    </div>
+    <div class="card">
+      <div class="sample" style="border-radius: 999px;"></div>
+      <span class="name">pill — ∞</span>
+      <span class="tok">--dh-radius-pill</span>
+      <span class="role">CKAN dataset tag chips only</span>
+    </div>
+  </div>
+</body></html>

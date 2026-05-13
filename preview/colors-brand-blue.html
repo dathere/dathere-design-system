@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #ffffff; }
+  .row { display: flex; gap: 12px; align-items: stretch; }
+  .swatch { flex: 1; min-height: 120px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; font: var(--dh-type-caption-01); }
+  .swatch .top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .swatch .name { font: var(--dh-type-heading-01); }
+  .swatch .hex  { font: var(--dh-type-code-01); opacity: 0.85; }
+  .swatch .ramp { font: var(--dh-type-code-01); opacity: 0.7; }
+  .light-text { color: var(--dh-text-on-color); }
+  .dark-text  { color: var(--dh-text-primary); }
+</style></head>
+<body>
+  <div class="row">
+    <div class="swatch dark-text"  style="background: var(--dh-blue-10);">
+      <div class="top"><span class="name">blue&nbsp;10</span><span class="hex">#EDF5FF</span></div>
+      <span class="ramp">highlight bg</span>
+    </div>
+    <div class="swatch dark-text"  style="background: var(--dh-blue-20);">
+      <div class="top"><span class="name">blue&nbsp;20</span><span class="hex">#D0E2FF</span></div>
+      <span class="ramp">selection</span>
+    </div>
+    <div class="swatch dark-text"  style="background: var(--dh-blue-30);">
+      <div class="top"><span class="name">blue&nbsp;30</span><span class="hex">#A6C8FF</span></div>
+      <span class="ramp">ai-border</span>
+    </div>
+    <div class="swatch dark-text"  style="background: var(--dh-blue-40);">
+      <div class="top"><span class="name">blue&nbsp;40</span><span class="hex">#78A9FF</span></div>
+      <span class="ramp">link-inverse</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-blue-50);">
+      <div class="top"><span class="name">blue&nbsp;50</span><span class="hex">#4589FF</span></div>
+      <span class="ramp">ai accent</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-blue-60);">
+      <div class="top"><span class="name">blue&nbsp;60</span><span class="hex">#0F62FE</span></div>
+      <span class="ramp">★ brand primary</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-blue-70);">
+      <div class="top"><span class="name">blue&nbsp;70</span><span class="hex">#0043CE</span></div>
+      <span class="ramp">hover</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-blue-80);">
+      <div class="top"><span class="name">blue&nbsp;80</span><span class="hex">#002D9C</span></div>
+      <span class="ramp">active</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-blue-90);">
+      <div class="top"><span class="name">blue&nbsp;90</span><span class="hex">#001D6C</span></div>
+      <span class="ramp">★ brand navy</span>
+    </div>
+    <div class="swatch light-text" style="background: var(--dh-blue-100);">
+      <div class="top"><span class="name">blue&nbsp;100</span><span class="hex">#001141</span></div>
+      <span class="ramp">deepest</span>
+    </div>
+  </div>
+</body></html>

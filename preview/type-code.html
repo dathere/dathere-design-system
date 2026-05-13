@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; background: #fff; color: var(--dh-text-primary); }
+  .stack { display: flex; flex-direction: column; gap: 14px; }
+  .row   { display: flex; gap: 16px; align-items: baseline; }
+  .row .tok { font: var(--dh-type-code-01); color: var(--dh-text-secondary); width: 90px; flex: none; }
+  .inline-code { font: var(--dh-type-code-01); background: var(--dh-layer-01); padding: 2px 6px; }
+  .block { background: var(--dh-gray-90); color: var(--dh-white); font: var(--dh-type-code-02); padding: 14px 16px; }
+  .block .k { color: #78a9ff; }
+  .block .s { color: #d4d4d4; }
+  .block .c { color: #6a9955; }
+</style></head>
+<body>
+  <div class="stack">
+    <div class="row">
+      <span class="tok">code-01</span>
+      <span>Run <span class="inline-code">qsv stats data.csv</span> to get type-inferred stats.</span>
+    </div>
+    <div class="block">
+<span class="c"># Find the top 10 boroughs by 311 call volume</span>
+<span class="k">qsv</span> <span class="k">frequency</span> -s Borough nyc311.csv \
+  <span class="s">|</span> <span class="k">qsv</span> <span class="k">sort</span> --numeric -s count -R \
+  <span class="s">|</span> <span class="k">qsv</span> <span class="k">slice</span> -e 10
+    </div>
+  </div>
+</body></html>

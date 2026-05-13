@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #fff; color: var(--dh-text-primary); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .label { font: var(--dh-type-label-01); color: var(--dh-text-secondary); }
+  .input { font: var(--dh-type-body-short-01); padding: 10px 12px; background: var(--dh-field-01); border: 0; border-bottom: 1px solid var(--dh-border-strong-01); color: var(--dh-text-primary); width: 100%; box-sizing: border-box; }
+  .input:focus { outline: 2px solid var(--dh-focus); outline-offset: -2px; border-bottom-color: transparent; }
+  .input::placeholder { color: var(--dh-text-placeholder); }
+  .helper { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); }
+  .err    { font: var(--dh-type-helper-text-01); color: var(--dh-text-error); }
+  .input.is-err { border-bottom-color: var(--dh-text-error); outline: 0; }
+  select.input { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--dh-icon-primary) 50%), linear-gradient(135deg, var(--dh-icon-primary) 50%, transparent 50%); background-position: calc(100% - 16px) 50%, calc(100% - 10px) 50%; background-size: 6px 6px; background-repeat: no-repeat; padding-right: 32px; }
+  .toggle { display: flex; align-items: center; gap: 10px; }
+  .toggle .sw { width: 32px; height: 16px; background: var(--dh-gray-50); position: relative; cursor: pointer; transition: background var(--dh-motion-fast-02); }
+  .toggle .sw::after { content: ''; position: absolute; top: 2px; left: 2px; width: 12px; height: 12px; background: var(--dh-white); transition: left var(--dh-motion-fast-02); }
+  .toggle.on .sw { background: var(--dh-blue-60); }
+  .toggle.on .sw::after { left: 18px; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="field">
+      <span class="label">Dataset name</span>
+      <input class="input" placeholder="e.g. nyc-311-2024" />
+      <span class="helper">Lowercase, hyphens only.</span>
+    </div>
+    <div class="field">
+      <span class="label">Dataset name</span>
+      <input class="input is-err" value="NYC 311 2024" />
+      <span class="err">Name must be lowercase with hyphens only.</span>
+    </div>
+    <div class="field">
+      <span class="label">Format</span>
+      <select class="input"><option>CSV (comma-separated)</option><option>TSV</option><option>Parquet</option></select>
+    </div>
+    <div class="field">
+      <span class="label">Visibility</span>
+      <div class="toggle on"><div class="sw"></div><span>Public</span></div>
+      <span class="helper">Anyone on the web can view this dataset.</span>
+    </div>
+  </div>
+</body></html>

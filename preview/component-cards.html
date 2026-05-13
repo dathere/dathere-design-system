@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: var(--dh-gray-10); color: var(--dh-text-primary); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .tile { background: var(--dh-white); border: 1px solid var(--dh-border-subtle-01); padding: 16px; display: flex; flex-direction: column; gap: 8px; transition: border var(--dh-motion-fast-02); }
+  .tile.interactive:hover { border-left: 2px solid var(--dh-blue-60); padding-left: 15px; }
+  .tile.selected { border-left: 2px solid var(--dh-blue-60); padding-left: 15px; background: var(--dh-blue-10); }
+  .tile h5 { font: var(--dh-type-heading-02); margin: 0; }
+  .tile p  { font: var(--dh-type-body-short-01); color: var(--dh-text-secondary); margin: 0; }
+  .meta    { display: flex; gap: 6px; align-items: center; font: var(--dh-type-caption-01); color: var(--dh-text-helper); }
+  .meta .dot { width: 4px; height: 4px; background: currentColor; border-radius: 50%; opacity: 0.5; }
+  .tag { font: var(--dh-type-label-01); padding: 2px 8px; border-radius: var(--dh-radius-pill); background: var(--dh-blue-20); color: var(--dh-blue-90); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="tile">
+      <h5>NYC 311 Service Requests</h5>
+      <p>28.1M rows · 41 cols · CSV, Parquet</p>
+      <div class="meta"><span>Updated 2 hours ago</span><span class="dot"></span><span>NYC Open Data</span></div>
+    </div>
+    <div class="tile interactive">
+      <h5>NM Water Quality Samples</h5>
+      <p>Surface &amp; groundwater monitoring sites, 2010–2024.</p>
+      <div class="meta"><span class="tag">water-quality</span><span class="tag">monitoring</span></div>
+    </div>
+    <div class="tile selected">
+      <h5>Boerne Permit Activity</h5>
+      <p>Building permits filed in Boerne, TX, monthly.</p>
+      <div class="meta"><span>16k rows</span><span class="dot"></span><span>Schema validated ✓</span></div>
+    </div>
+    <div class="tile">
+      <h5>EPA Air Quality (Hourly)</h5>
+      <p>PM2.5, ozone, and NO₂ at 4,200 monitors nationwide.</p>
+      <div class="meta"><span>Updated daily</span><span class="dot"></span><span>API ready</span></div>
+    </div>
+  </div>
+</body></html>

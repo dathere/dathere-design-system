@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #ffffff; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px 24px; }
+  .row  { display: flex; gap: 12px; align-items: center; }
+  .chip { width: 28px; height: 28px; flex: none; border: 1px solid var(--dh-border-subtle-00); }
+  .name { font: var(--dh-type-code-01); color: var(--dh-text-primary); flex: 1; min-width: 0; }
+  .role { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="row"><div class="chip" style="background: var(--dh-text-primary);"></div><span class="name">--dh-text-primary</span><span class="role">body</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-text-secondary);"></div><span class="name">--dh-text-secondary</span><span class="role">subtitle</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-text-helper);"></div><span class="name">--dh-text-helper</span><span class="role">caption</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-text-placeholder);"></div><span class="name">--dh-text-placeholder</span><span class="role">input placeholder</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-link-primary);"></div><span class="name">--dh-link-primary</span><span class="role">links</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-link-primary-hover);"></div><span class="name">--dh-link-primary-hover</span><span class="role">link:hover</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-interactive);"></div><span class="name">--dh-interactive</span><span class="role">action / focus</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-icon-primary);"></div><span class="name">--dh-icon-primary</span><span class="role">icons (default)</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-background-brand);"></div><span class="name">--dh-background-brand</span><span class="role">brand surfaces</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-highlight);"></div><span class="name">--dh-highlight</span><span class="role">selection</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-layer-01); border-color: var(--dh-border-subtle-01);"></div><span class="name">--dh-layer-01</span><span class="role">card bg</span></div>
+    <div class="row"><div class="chip" style="background: var(--dh-border-subtle-01);"></div><span class="name">--dh-border-subtle-01</span><span class="role">card border</span></div>
+  </div>
+</body></html>

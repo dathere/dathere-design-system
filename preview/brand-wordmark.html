@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; background: #fff; color: var(--dh-text-primary); }
+  .wrap { display: grid; grid-template-columns: 1fr 1.4fr; gap: 28px; align-items: center; }
+  .glyph { font-family: var(--dh-font-sans); font-weight: 700; font-size: 96px; line-height: 1; color: var(--dh-blue-60); letter-spacing: -0.04em; }
+  .small  { font: var(--dh-type-body-long-01); color: var(--dh-text-secondary); }
+  .small strong { color: var(--dh-text-primary); }
+  ul.dos { list-style: none; padding: 0; margin: 12px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font: var(--dh-type-body-short-01); }
+  ul.dos li::before { content: ''; display: inline-block; width: 10px; height: 10px; margin-right: 8px; transform: translateY(1px); }
+  ul.dos li.do::before    { background: var(--dh-green-50); }
+  ul.dos li.dont::before  { background: var(--dh-red-60); }
+</style></head>
+<body>
+  <div class="wrap">
+    <div>
+      <div class="glyph">datHere</div>
+    </div>
+    <div>
+      <div class="small"><strong>Always write the wordmark as <code>datHere</code></strong> — lowercase <code>d</code>, lowercase <code>at</code>, capital <code>H</code>, lowercase <code>ere</code>.</div>
+      <ul class="dos">
+        <li class="do">datHere</li>
+        <li class="dont">Dathere</li>
+        <li class="do">datHere, Inc.</li>
+        <li class="dont">DatHere</li>
+        <li class="do">@dathere (handles)</li>
+        <li class="dont">DATHERE</li>
+      </ul>
+    </div>
+  </div>
+</body></html>

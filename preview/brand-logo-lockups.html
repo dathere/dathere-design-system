@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 0; background: #fff; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 200px; }
+  .tile { display: flex; align-items: center; justify-content: center; padding: 24px; }
+  .tile.dark  { background: var(--dh-blue-90); }
+  .tile.light { background: var(--dh-white); border: 1px solid var(--dh-border-subtle-01); border-left: 0; }
+  .tile img { max-width: 80%; max-height: 90px; }
+  .label { position: absolute; font: var(--dh-type-code-01); color: var(--dh-text-helper); padding: 6px 8px; }
+  .tile { position: relative; }
+  .dark .label  { color: rgba(255,255,255,0.7); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="tile dark">
+      <span class="label">primary · dark bg</span>
+      <img src="../assets/logo-datHere-primary-dark-bg.png" alt="datHere logo on dark" />
+    </div>
+    <div class="tile light">
+      <span class="label">primary · light bg</span>
+      <img src="../assets/logo-datHere-light.png" alt="datHere logo on light" />
+    </div>
+  </div>
+</body></html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>datHere CKAN Portal — UI kit</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="../../assets/favicon.ico" />
+  <link rel="stylesheet" href="../../colors_and_type.css" />
+  <style>
+    body { margin: 0; background: var(--dh-white); }
+    .screen-switcher { display: flex; gap: 0; background: var(--dh-gray-100); color: var(--dh-white); }
+    .screen-switcher .lbl { font: var(--dh-type-helper-text-01); padding: 8px 16px; color: rgba(255,255,255,0.6); display: flex; align-items: center; }
+    .screen-switcher button { background: transparent; border: 0; color: rgba(255,255,255,0.7); font: var(--dh-type-body-short-01); padding: 10px 14px; cursor: pointer; border-bottom: 2px solid transparent; }
+    .screen-switcher button:hover { color: var(--dh-white); }
+    .screen-switcher button.on { color: var(--dh-white); border-bottom-color: var(--dh-blue-50); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="Masthead.jsx"></script>
+  <script type="text/babel" src="DatasetCard.jsx"></script>
+  <script type="text/babel" src="HomeHero.jsx"></script>
+  <script type="text/babel" src="SearchScreen.jsx"></script>
+  <script type="text/babel" src="DatasetDetail.jsx"></script>
+
+  <script type="text/babel">
+    function App() {
+      const [screen, setScreen] = React.useState('home');
+      return (
+        <React.Fragment>
+          <div className="screen-switcher">
+            <span className="lbl">UI kit · CKAN portal — preview screens:</span>
+            <button className={screen === 'home'   ? 'on' : ''} onClick={() => setScreen('home')}>1. Home</button>
+            <button className={screen === 'search' ? 'on' : ''} onClick={() => setScreen('search')}>2. Search</button>
+            <button className={screen === 'detail' ? 'on' : ''} onClick={() => setScreen('detail')}>3. Dataset detail</button>
+          </div>
+          <CK_Masthead />
+          {screen === 'home'   && <CK_HomeHero   onSelectDataset={() => setScreen('detail')} />}
+          {screen === 'search' && <CK_SearchScreen onSelectDataset={() => setScreen('detail')} />}
+          {screen === 'detail' && <CK_DatasetDetail />}
+        </React.Fragment>
+      );
+    }
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

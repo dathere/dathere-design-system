@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #fff; color: var(--dh-text-primary); }
+  .stack { display: flex; flex-direction: column; gap: 16px; }
+  .row   { display: flex; gap: 8px; align-items: center; }
+  .lbl   { width: 90px; font: var(--dh-type-code-01); color: var(--dh-text-secondary); }
+
+  .btn { font: var(--dh-type-body-short-01); font-weight: 400; padding: 10px 16px; border: 1px solid transparent; cursor: pointer; transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard), border-color var(--dh-motion-fast-02) var(--dh-ease-productive-standard); display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary    { background: var(--dh-blue-60); color: var(--dh-white); }
+  .btn-primary:hover    { background: var(--dh-blue-70); }
+  .btn-primary.is-active { background: var(--dh-blue-80); }
+
+  .btn-secondary  { background: var(--dh-gray-80); color: var(--dh-white); }
+  .btn-secondary:hover { background: var(--dh-gray-100); }
+
+  .btn-tertiary   { background: transparent; color: var(--dh-blue-60); border-color: var(--dh-blue-60); }
+  .btn-tertiary:hover { background: var(--dh-blue-60); color: var(--dh-white); }
+
+  .btn-ghost      { background: transparent; color: var(--dh-blue-60); }
+  .btn-ghost:hover { background: rgba(141,141,141,0.12); }
+
+  .btn-danger     { background: var(--dh-red-60); color: var(--dh-white); }
+  .btn-danger:hover { background: #b81921; }
+
+  .btn-disabled   { background: var(--dh-gray-30); color: rgba(22,22,22,0.25); cursor: not-allowed; pointer-events: none; }
+</style></head>
+<body>
+  <div class="stack">
+    <div class="row">
+      <span class="lbl">primary</span>
+      <button class="btn btn-primary">Validate dataset</button>
+      <button class="btn btn-primary" style="background: var(--dh-blue-70);">hover</button>
+      <button class="btn btn-primary is-active">active</button>
+    </div>
+    <div class="row">
+      <span class="lbl">secondary</span>
+      <button class="btn btn-secondary">Save draft</button>
+      <button class="btn btn-secondary" style="background: var(--dh-gray-100);">hover</button>
+    </div>
+    <div class="row">
+      <span class="lbl">tertiary</span>
+      <button class="btn btn-tertiary">View schema</button>
+      <button class="btn btn-tertiary" style="background: var(--dh-blue-60); color: var(--dh-white);">hover</button>
+    </div>
+    <div class="row">
+      <span class="lbl">ghost</span>
+      <button class="btn btn-ghost">Cancel</button>
+      <button class="btn btn-ghost" style="background: rgba(141,141,141,0.12);">hover</button>
+    </div>
+    <div class="row">
+      <span class="lbl">danger</span>
+      <button class="btn btn-danger">Delete dataset</button>
+    </div>
+    <div class="row">
+      <span class="lbl">disabled</span>
+      <button class="btn btn-disabled">Publish</button>
+    </div>
+  </div>
+</body></html>

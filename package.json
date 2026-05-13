@@ -1,0 +1,9 @@
+{
+  "name": "dathere-design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "datHere design system — Carbon white theme",
+  "dependencies": {
+    "@carbon/icons": "^11.80.0"
+  }
+}

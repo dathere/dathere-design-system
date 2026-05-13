@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; background: #fff; color: var(--dh-text-primary); font: var(--dh-type-body-short-01); }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  .col h4 { font: var(--dh-type-heading-02); margin: 0 0 10px; }
+  .row { display: grid; grid-template-columns: 140px 1fr 80px; gap: 10px; align-items: center; padding: 4px 0; border-bottom: 1px solid var(--dh-border-subtle-00); }
+  .row:last-child { border-bottom: 0; }
+  .tok { font: var(--dh-type-code-01); color: var(--dh-text-secondary); }
+  .ms  { font: var(--dh-type-caption-01); color: var(--dh-text-helper); text-align: right; }
+  .bar { height: 6px; background: var(--dh-blue-60); transform-origin: left; }
+  .b1 { width: 8%; } .b2 { width: 14%; } .b3 { width: 20%; }
+  .b4 { width: 32%; } .b5 { width: 54%; } .b6 { width: 100%; }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="col">
+      <h4>Duration tokens</h4>
+      <div class="row"><span class="tok">fast-01</span><div class="bar b1"></div><span class="ms">70 ms</span></div>
+      <div class="row"><span class="tok">fast-02</span><div class="bar b2"></div><span class="ms">110 ms</span></div>
+      <div class="row"><span class="tok">moderate-01</span><div class="bar b3"></div><span class="ms">150 ms</span></div>
+      <div class="row"><span class="tok">moderate-02</span><div class="bar b4"></div><span class="ms">240 ms</span></div>
+      <div class="row"><span class="tok">slow-01</span><div class="bar b5"></div><span class="ms">400 ms</span></div>
+      <div class="row"><span class="tok">slow-02</span><div class="bar b6"></div><span class="ms">700 ms</span></div>
+    </div>
+    <div class="col">
+      <h4>Easing curves</h4>
+      <div class="row"><span class="tok">prod-standard</span><span style="font: var(--dh-type-code-01); color: var(--dh-text-helper);">cubic-bezier(.2, 0, .38, .9)</span><span></span></div>
+      <div class="row"><span class="tok">prod-entrance</span><span style="font: var(--dh-type-code-01); color: var(--dh-text-helper);">cubic-bezier(0, 0, .38, .9)</span><span></span></div>
+      <div class="row"><span class="tok">prod-exit</span><span style="font: var(--dh-type-code-01); color: var(--dh-text-helper);">cubic-bezier(.2, 0, 1, .9)</span><span></span></div>
+      <div class="row"><span class="tok">expr-standard</span><span style="font: var(--dh-type-code-01); color: var(--dh-text-helper);">cubic-bezier(.4, .14, .3, 1)</span><span></span></div>
+      <div class="row"><span class="tok">expr-entrance</span><span style="font: var(--dh-type-code-01); color: var(--dh-text-helper);">cubic-bezier(0, 0, .3, 1)</span><span></span></div>
+      <div class="row"><span class="tok">expr-exit</span><span style="font: var(--dh-type-code-01); color: var(--dh-text-helper);">cubic-bezier(.4, .14, 1, 1)</span><span></span></div>
+    </div>
+  </div>
+</body></html>

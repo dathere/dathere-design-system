@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 24px; background: #ffffff; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .row  { display: flex; gap: 16px; align-items: center; }
+  .chip { width: 56px; height: 56px; flex: none; border: 1px solid var(--dh-border-subtle-00); }
+  .meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .meta .lbl  { font: var(--dh-type-heading-02); color: var(--dh-text-primary); }
+  .meta .role { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); }
+  .meta .hex  { font: var(--dh-type-code-01); color: var(--dh-text-secondary); }
+</style></head>
+<body>
+  <div class="grid">
+    <div class="row">
+      <div class="chip" style="background: var(--dh-support-error);"></div>
+      <div class="meta"><span class="lbl">support-error</span><span class="role">errors, danger buttons</span><span class="hex">#DA1E28 · red-60</span></div>
+    </div>
+    <div class="row">
+      <div class="chip" style="background: var(--dh-support-success);"></div>
+      <div class="meta"><span class="lbl">support-success</span><span class="role">validation passed</span><span class="hex">#24A148 · green-50</span></div>
+    </div>
+    <div class="row">
+      <div class="chip" style="background: var(--dh-support-warning);"></div>
+      <div class="meta"><span class="lbl">support-warning</span><span class="role">caution states</span><span class="hex">#F1C21B · yellow-30</span></div>
+    </div>
+    <div class="row">
+      <div class="chip" style="background: var(--dh-support-info);"></div>
+      <div class="meta"><span class="lbl">support-info</span><span class="role">info banners</span><span class="hex">#0043CE · blue-70</span></div>
+    </div>
+    <div class="row">
+      <div class="chip" style="background: var(--dh-orange-40);"></div>
+      <div class="meta"><span class="lbl">caution-major</span><span class="role">elevated caution</span><span class="hex">#FF832B · orange-40</span></div>
+    </div>
+    <div class="row">
+      <div class="chip" style="background: var(--dh-purple-60);"></div>
+      <div class="meta"><span class="lbl">link-visited</span><span class="role">visited link state</span><span class="hex">#8A3FFC · purple-60</span></div>
+    </div>
+  </div>
+</body></html>

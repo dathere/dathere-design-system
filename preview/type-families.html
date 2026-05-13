@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 28px; background: #fff; }
+  .families { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .fam { display: flex; flex-direction: column; gap: 8px; }
+  .fam .glyph { font-size: 64px; line-height: 1; letter-spacing: -0.02em; color: var(--dh-text-primary); }
+  .fam .name  { font: var(--dh-type-heading-02); color: var(--dh-text-primary); }
+  .fam .role  { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); }
+  .fam .stack { font: var(--dh-type-code-01); color: var(--dh-text-secondary); }
+  .sans  { font-family: var(--dh-font-sans); }
+  .mono  { font-family: var(--dh-font-mono); }
+  .serif { font-family: var(--dh-font-serif); }
+</style></head>
+<body>
+  <div class="families">
+    <div class="fam">
+      <div class="glyph sans">Aa Bb 0–9</div>
+      <span class="name">IBM Plex Sans</span>
+      <span class="role">UI, headings, body</span>
+      <span class="stack">300 / 400 / 500 / 600 / 700</span>
+    </div>
+    <div class="fam">
+      <div class="glyph mono">Aa &nbsp;{0,1}</div>
+      <span class="name">IBM Plex Mono</span>
+      <span class="role">code, tables, command names</span>
+      <span class="stack">400 / 500 / 600</span>
+    </div>
+    <div class="fam">
+      <div class="glyph serif">Aa  Bb</div>
+      <span class="name">IBM Plex Serif</span>
+      <span class="role">editorial, long-form (rare)</span>
+      <span class="stack">300 / 400 / 600</span>
+    </div>
+  </div>
+</body></html>

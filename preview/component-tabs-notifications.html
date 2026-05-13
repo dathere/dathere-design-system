@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  body { margin: 0; padding: 0; background: #fff; color: var(--dh-text-primary); font-family: var(--dh-font-sans); }
+
+  /* Tabs */
+  .tabs { display: flex; border-bottom: 1px solid var(--dh-border-subtle-01); padding: 0 24px; gap: 0; }
+  .tab  { font: var(--dh-type-body-short-01); padding: 12px 16px; color: var(--dh-text-secondary); border-bottom: 2px solid transparent; cursor: pointer; }
+  .tab:hover { color: var(--dh-text-primary); }
+  .tab.is-active { color: var(--dh-text-primary); border-bottom-color: var(--dh-blue-60); }
+
+  /* Inline notification */
+  .notif { display: flex; gap: 12px; padding: 12px 16px; border-left: 3px solid; align-items: flex-start; margin: 20px 24px 0; }
+  .notif .ico { width: 16px; height: 16px; flex: none; margin-top: 2px; }
+  .notif .body { font: var(--dh-type-body-short-01); flex: 1; }
+  .notif .body strong { display: block; }
+  .notif .body span { color: var(--dh-text-secondary); }
+  .notif.success { background: #defbe6; border-left-color: var(--dh-green-50); }
+  .notif.success .ico { background: var(--dh-green-50); clip-path: polygon(20% 50%, 45% 75%, 80% 20%, 90% 30%, 45% 90%, 10% 60%); }
+  .notif.error   { background: #fff1f1; border-left-color: var(--dh-red-60); }
+  .notif.error   .ico { background: var(--dh-red-60); border-radius: 50%; }
+  .notif.info    { background: var(--dh-blue-10); border-left-color: var(--dh-blue-70); }
+  .notif.info    .ico { background: var(--dh-blue-70); border-radius: 50%; }
+  .notif.warn    { background: #fcf4d6; border-left-color: var(--dh-yellow-60); }
+  .notif.warn    .ico { background: var(--dh-yellow-60); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+</style></head>
+<body>
+  <div class="tabs">
+    <div class="tab is-active">Overview</div>
+    <div class="tab">Resources <span style="font: var(--dh-type-label-01); color: var(--dh-text-helper); margin-left: 6px;">12</span></div>
+    <div class="tab">Schema</div>
+    <div class="tab">Activity</div>
+    <div class="tab">API</div>
+  </div>
+  <div class="notif success">
+    <div class="ico"></div>
+    <div class="body"><strong>Schema validated.</strong><span>All 28.1M rows conform to the inferred JSON Schema.</span></div>
+  </div>
+  <div class="notif error">
+    <div class="ico"></div>
+    <div class="body"><strong>415 rows rejected.</strong><span>Column <code>borough</code> contains values outside the enum.</span></div>
+  </div>
+  <div class="notif info" style="margin-bottom: 24px;">
+    <div class="ico"></div>
+    <div class="body"><strong>Index built.</strong><span>Random-access mode is now available for this dataset.</span></div>
+  </div>
+</body></html>
