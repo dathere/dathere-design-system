@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>datHere Design System</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--dh-background); color: var(--dh-text-primary); font-family: var(--dh-font-sans); }
+
+  /* ── masthead ── */
+  .masthead {
+    height: 48px; background: var(--dh-blue-90); display: flex; align-items: center;
+    padding: 0 32px; gap: 16px;
+  }
+  .masthead img { height: 20px; }
+  .masthead span { font: var(--dh-type-label-01); color: var(--dh-blue-30); letter-spacing: 0.06em; text-transform: uppercase; }
+
+  /* ── layout ── */
+  .shell { display: flex; min-height: calc(100vh - 48px); }
+
+  /* ── sidebar ── */
+  .sidebar {
+    width: 224px; flex: none; border-right: 1px solid var(--dh-border-subtle-01);
+    padding: 24px 0; position: sticky; top: 0; height: calc(100vh - 48px); overflow-y: auto;
+  }
+  .sidebar-section { margin-bottom: 8px; }
+  .sidebar-label {
+    font: var(--dh-type-label-01); color: var(--dh-text-secondary);
+    letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 8px 16px 4px; display: block;
+  }
+  .sidebar-link {
+    display: block; padding: 6px 16px; font: var(--dh-type-body-short-01);
+    color: var(--dh-text-primary); text-decoration: none; cursor: pointer;
+    border-left: 2px solid transparent;
+  }
+  .sidebar-link:hover { background: var(--dh-layer-01); }
+  .sidebar-link.active { border-left-color: var(--dh-blue-60); color: var(--dh-blue-60); background: var(--dh-layer-01); }
+
+  /* ── main ── */
+  .main { flex: 1; overflow: hidden; }
+  iframe {
+    width: 100%; height: calc(100vh - 48px);
+    border: none; display: block;
+  }
+
+  /* ── ui-kit badge ── */
+  .badge {
+    display: inline-block; font: var(--dh-type-label-01); font-size: 10px;
+    padding: 1px 5px; background: var(--dh-blue-10); color: var(--dh-blue-60);
+    vertical-align: middle; margin-left: 6px;
+  }
+</style>
+</head>
+<body>
+
+<div class="masthead">
+  <img src="../assets/logo-datHere-white.png" alt="datHere">
+  <span>Design System</span>
+</div>
+
+<div class="shell">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">
+      <span class="sidebar-label">Brand</span>
+      <a class="sidebar-link" data-src="brand-wordmark.html">Wordmark</a>
+      <a class="sidebar-link" data-src="brand-logo-lockups.html">Logo lockups</a>
+      <a class="sidebar-link" data-src="brand-iconography.html">Iconography</a>
+      <a class="sidebar-link" data-src="motion-iconography.html">Motion icons</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Color</span>
+      <a class="sidebar-link" data-src="colors-brand-blue.html">Brand blue</a>
+      <a class="sidebar-link" data-src="colors-neutral-gray.html">Neutral gray</a>
+      <a class="sidebar-link" data-src="colors-semantic.html">Semantic</a>
+      <a class="sidebar-link" data-src="colors-support.html">Support</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Typography</span>
+      <a class="sidebar-link" data-src="type-families.html">Type families</a>
+      <a class="sidebar-link" data-src="type-headings.html">Headings</a>
+      <a class="sidebar-link" data-src="type-body.html">Body</a>
+      <a class="sidebar-link" data-src="type-code.html">Code</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Spacing</span>
+      <a class="sidebar-link" data-src="spacing-scale.html">Scale</a>
+      <a class="sidebar-link" data-src="spacing-elevation.html">Elevation</a>
+      <a class="sidebar-link" data-src="spacing-radii.html">Radii</a>
+      <a class="sidebar-link" data-src="spacing-motion.html">Motion</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">Components</span>
+      <a class="sidebar-link" data-src="component-buttons.html">Buttons</a>
+      <a class="sidebar-link" data-src="component-cards.html">Cards</a>
+      <a class="sidebar-link" data-src="component-fields.html">Fields</a>
+      <a class="sidebar-link" data-src="component-tabs-notifications.html">Tabs &amp; notifications</a>
+      <a class="sidebar-link" data-src="component-tags.html">Tags</a>
+    </div>
+    <div class="sidebar-section">
+      <span class="sidebar-label">UI Kits</span>
+      <a class="sidebar-link" data-src="../ui_kits/marketing/index.html">Marketing site <span class="badge">kit</span></a>
+      <a class="sidebar-link" data-src="../ui_kits/ckan-portal/index.html">CKAN portal <span class="badge">kit</span></a>
+    </div>
+  </nav>
+
+  <main class="main">
+    <iframe id="preview" src="brand-wordmark.html" title="Preview"></iframe>
+  </main>
+</div>
+
+<script>
+  const frame   = document.getElementById('preview');
+  const sidebar = document.getElementById('sidebar');
+  const links   = sidebar.querySelectorAll('[data-src]');
+
+  function navigate(src, el) {
+    frame.src = src;
+    links.forEach(l => l.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  // set first active
+  links[0].classList.add('active');
+
+  sidebar.addEventListener('click', e => {
+    const link = e.target.closest('[data-src]');
+    if (!link) return;
+    e.preventDefault();
+    navigate(link.dataset.src, link);
+  });
+</script>
+</body>
+</html>
