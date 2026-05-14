@@ -4,6 +4,7 @@
   "private": true,
   "description": "datHere design system — Carbon white theme",
   "dependencies": {
-    "@carbon/icons": "^11.80.0"
+    "@carbon/icons": "^11.80.0",
+    "@carbon/icons-motion": "^2.3.0"
   }
 }

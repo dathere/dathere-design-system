@@ -1,0 +1,742 @@
+[
+  {
+    "name": "archive",
+    "displayName": "Archive",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "binoculars",
+    "displayName": "Binoculars",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "connection-signal",
+    "displayName": "ConnectionSignal",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "dashboard",
+    "displayName": "Dashboard",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "download",
+    "displayName": "Download",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "edit",
+    "displayName": "Edit",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "events",
+    "displayName": "Events",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "globe",
+    "displayName": "Globe",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "grid",
+    "displayName": "Grid",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "settings",
+    "displayName": "Settings",
+    "category": "ApiConnect"
+  },
+  {
+    "name": "badge-icon",
+    "displayName": "BadgeIcon",
+    "category": "Badge"
+  },
+  {
+    "name": "copy",
+    "displayName": "Copy",
+    "category": "Formatting"
+  },
+  {
+    "name": "crop",
+    "displayName": "Crop",
+    "category": "Formatting"
+  },
+  {
+    "name": "cut",
+    "displayName": "Cut",
+    "category": "Formatting"
+  },
+  {
+    "name": "magic-wand",
+    "displayName": "MagicWand",
+    "category": "Formatting"
+  },
+  {
+    "name": "paste",
+    "displayName": "Paste",
+    "category": "Formatting"
+  },
+  {
+    "name": "add-alt",
+    "displayName": "AddAlt",
+    "category": "Navigation"
+  },
+  {
+    "name": "add-filled",
+    "displayName": "AddFilled",
+    "category": "Navigation"
+  },
+  {
+    "name": "add-large",
+    "displayName": "AddLarge",
+    "category": "Navigation"
+  },
+  {
+    "name": "add",
+    "displayName": "Add",
+    "category": "Navigation"
+  },
+  {
+    "name": "apps",
+    "displayName": "Apps",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-down-left",
+    "displayName": "ArrowDownLeft",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-down",
+    "displayName": "ArrowDown",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-down-right",
+    "displayName": "ArrowDownRight",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-left",
+    "displayName": "ArrowLeft",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-right",
+    "displayName": "ArrowRight",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-up-left",
+    "displayName": "ArrowUpLeft",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-up",
+    "displayName": "ArrowUp",
+    "category": "Navigation"
+  },
+  {
+    "name": "arrow-up-right",
+    "displayName": "ArrowUpRight",
+    "category": "Navigation"
+  },
+  {
+    "name": "caret-down",
+    "displayName": "CaretDown",
+    "category": "Navigation"
+  },
+  {
+    "name": "caret-left",
+    "displayName": "CaretLeft",
+    "category": "Navigation"
+  },
+  {
+    "name": "caret-right",
+    "displayName": "CaretRight",
+    "category": "Navigation"
+  },
+  {
+    "name": "caret-up",
+    "displayName": "CaretUp",
+    "category": "Navigation"
+  },
+  {
+    "name": "chevron-down",
+    "displayName": "ChevronDown",
+    "category": "Navigation"
+  },
+  {
+    "name": "chevron-left",
+    "displayName": "ChevronLeft",
+    "category": "Navigation"
+  },
+  {
+    "name": "chevron-right",
+    "displayName": "ChevronRight",
+    "category": "Navigation"
+  },
+  {
+    "name": "chevron-up",
+    "displayName": "ChevronUp",
+    "category": "Navigation"
+  },
+  {
+    "name": "close-filled",
+    "displayName": "CloseFilled",
+    "category": "Navigation"
+  },
+  {
+    "name": "close",
+    "displayName": "Close",
+    "category": "Navigation"
+  },
+  {
+    "name": "close-outline",
+    "displayName": "CloseOutline",
+    "category": "Navigation"
+  },
+  {
+    "name": "down-to-bottom",
+    "displayName": "DownToBottom",
+    "category": "Navigation"
+  },
+  {
+    "name": "draggable",
+    "displayName": "Draggable",
+    "category": "Navigation"
+  },
+  {
+    "name": "fit-to-screen",
+    "displayName": "FitToScreen",
+    "category": "Navigation"
+  },
+  {
+    "name": "home",
+    "displayName": "Home",
+    "category": "Navigation"
+  },
+  {
+    "name": "menu",
+    "displayName": "Menu",
+    "category": "Navigation"
+  },
+  {
+    "name": "overflow-menu-horizontal",
+    "displayName": "OverflowMenuHorizontal",
+    "category": "Navigation"
+  },
+  {
+    "name": "overflow-menu-vertical",
+    "displayName": "OverflowMenuVertical",
+    "category": "Navigation"
+  },
+  {
+    "name": "page-first",
+    "displayName": "PageFirst",
+    "category": "Navigation"
+  },
+  {
+    "name": "page-last",
+    "displayName": "PageLast",
+    "category": "Navigation"
+  },
+  {
+    "name": "select-window",
+    "displayName": "SelectWindow",
+    "category": "Navigation"
+  },
+  {
+    "name": "subtract-alt",
+    "displayName": "SubtractAlt",
+    "category": "Navigation"
+  },
+  {
+    "name": "subtract-large",
+    "displayName": "SubtractLarge",
+    "category": "Navigation"
+  },
+  {
+    "name": "subtract",
+    "displayName": "Subtract",
+    "category": "Navigation"
+  },
+  {
+    "name": "switcher",
+    "displayName": "Switcher",
+    "category": "Navigation"
+  },
+  {
+    "name": "up-to-top",
+    "displayName": "UpToTop",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-area",
+    "displayName": "ZoomArea",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-fit",
+    "displayName": "ZoomFit",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-in-area",
+    "displayName": "ZoomInArea",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-in",
+    "displayName": "ZoomIn",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-out-area",
+    "displayName": "ZoomOutArea",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-out",
+    "displayName": "ZoomOut",
+    "category": "Navigation"
+  },
+  {
+    "name": "zoom-reset",
+    "displayName": "ZoomReset",
+    "category": "Navigation"
+  },
+  {
+    "name": "add-comment",
+    "displayName": "AddComment",
+    "category": "Operations"
+  },
+  {
+    "name": "arrow-shift-down",
+    "displayName": "ArrowShiftDown",
+    "category": "Operations"
+  },
+  {
+    "name": "arrows-horizontal",
+    "displayName": "ArrowsHorizontal",
+    "category": "Operations"
+  },
+  {
+    "name": "arrows-vertical",
+    "displayName": "ArrowsVertical",
+    "category": "Operations"
+  },
+  {
+    "name": "bookmark-add",
+    "displayName": "BookmarkAdd",
+    "category": "Operations"
+  },
+  {
+    "name": "bookmark-filled",
+    "displayName": "BookmarkFilled",
+    "category": "Operations"
+  },
+  {
+    "name": "bookmark",
+    "displayName": "Bookmark",
+    "category": "Operations"
+  },
+  {
+    "name": "caret-sort-down",
+    "displayName": "CaretSortDown",
+    "category": "Operations"
+  },
+  {
+    "name": "caret-sort",
+    "displayName": "CaretSort",
+    "category": "Operations"
+  },
+  {
+    "name": "caret-sort-up",
+    "displayName": "CaretSortUp",
+    "category": "Operations"
+  },
+  {
+    "name": "center-circle",
+    "displayName": "CenterCircle",
+    "category": "Operations"
+  },
+  {
+    "name": "chat-launch",
+    "displayName": "ChatLaunch",
+    "category": "Operations"
+  },
+  {
+    "name": "chat",
+    "displayName": "Chat",
+    "category": "Operations"
+  },
+  {
+    "name": "chat-off",
+    "displayName": "ChatOff",
+    "category": "Operations"
+  },
+  {
+    "name": "chevron-mini",
+    "displayName": "ChevronMini",
+    "category": "Operations"
+  },
+  {
+    "name": "chevron-sort",
+    "displayName": "ChevronSort",
+    "category": "Operations"
+  },
+  {
+    "name": "choose-item",
+    "displayName": "ChooseItem",
+    "category": "Operations"
+  },
+  {
+    "name": "clean",
+    "displayName": "Clean",
+    "category": "Operations"
+  },
+  {
+    "name": "collapse-all",
+    "displayName": "CollapseAll",
+    "category": "Operations"
+  },
+  {
+    "name": "connect",
+    "displayName": "Connect",
+    "category": "Operations"
+  },
+  {
+    "name": "drag-horizontal",
+    "displayName": "DragHorizontal",
+    "category": "Operations"
+  },
+  {
+    "name": "drag-vertical",
+    "displayName": "DragVertical",
+    "category": "Operations"
+  },
+  {
+    "name": "exit",
+    "displayName": "Exit",
+    "category": "Operations"
+  },
+  {
+    "name": "explore",
+    "displayName": "Explore",
+    "category": "Operations"
+  },
+  {
+    "name": "filter-edit",
+    "displayName": "FilterEdit",
+    "category": "Operations"
+  },
+  {
+    "name": "filter",
+    "displayName": "Filter",
+    "category": "Operations"
+  },
+  {
+    "name": "filter-remove",
+    "displayName": "FilterRemove",
+    "category": "Operations"
+  },
+  {
+    "name": "filter-reset",
+    "displayName": "FilterReset",
+    "category": "Operations"
+  },
+  {
+    "name": "flag-filled",
+    "displayName": "FlagFilled",
+    "category": "Operations"
+  },
+  {
+    "name": "flag",
+    "displayName": "Flag",
+    "category": "Operations"
+  },
+  {
+    "name": "idea",
+    "displayName": "Idea",
+    "category": "Operations"
+  },
+  {
+    "name": "image-search",
+    "displayName": "ImageSearch",
+    "category": "Operations"
+  },
+  {
+    "name": "jump-link",
+    "displayName": "JumpLink",
+    "category": "Operations"
+  },
+  {
+    "name": "launch",
+    "displayName": "Launch",
+    "category": "Operations"
+  },
+  {
+    "name": "layers",
+    "displayName": "Layers",
+    "category": "Operations"
+  },
+  {
+    "name": "login",
+    "displayName": "Login",
+    "category": "Operations"
+  },
+  {
+    "name": "logout",
+    "displayName": "Logout",
+    "category": "Operations"
+  },
+  {
+    "name": "loop",
+    "displayName": "Loop",
+    "category": "Operations"
+  },
+  {
+    "name": "maximize",
+    "displayName": "Maximize",
+    "category": "Operations"
+  },
+  {
+    "name": "minimize",
+    "displayName": "Minimize",
+    "category": "Operations"
+  },
+  {
+    "name": "move",
+    "displayName": "Move",
+    "category": "Operations"
+  },
+  {
+    "name": "new-tab",
+    "displayName": "NewTab",
+    "category": "Operations"
+  },
+  {
+    "name": "not-sent-filled",
+    "displayName": "NotSentFilled",
+    "category": "Operations"
+  },
+  {
+    "name": "not-sent",
+    "displayName": "NotSent",
+    "category": "Operations"
+  },
+  {
+    "name": "pan-horizontal",
+    "displayName": "PanHorizontal",
+    "category": "Operations"
+  },
+  {
+    "name": "pan-vertical",
+    "displayName": "PanVertical",
+    "category": "Operations"
+  },
+  {
+    "name": "pin-filled",
+    "displayName": "PinFilled",
+    "category": "Operations"
+  },
+  {
+    "name": "pin",
+    "displayName": "Pin",
+    "category": "Operations"
+  },
+  {
+    "name": "recently-viewed",
+    "displayName": "RecentlyViewed",
+    "category": "Operations"
+  },
+  {
+    "name": "recommend",
+    "displayName": "Recommend",
+    "category": "Operations"
+  },
+  {
+    "name": "redo",
+    "displayName": "Redo",
+    "category": "Operations"
+  },
+  {
+    "name": "renew",
+    "displayName": "Renew",
+    "category": "Operations"
+  },
+  {
+    "name": "repeat",
+    "displayName": "Repeat",
+    "category": "Operations"
+  },
+  {
+    "name": "reply-all",
+    "displayName": "ReplyAll",
+    "category": "Operations"
+  },
+  {
+    "name": "reply",
+    "displayName": "Reply",
+    "category": "Operations"
+  },
+  {
+    "name": "request-quote",
+    "displayName": "RequestQuote",
+    "category": "Operations"
+  },
+  {
+    "name": "reset-alt",
+    "displayName": "ResetAlt",
+    "category": "Operations"
+  },
+  {
+    "name": "reset",
+    "displayName": "Reset",
+    "category": "Operations"
+  },
+  {
+    "name": "restart",
+    "displayName": "Restart",
+    "category": "Operations"
+  },
+  {
+    "name": "review",
+    "displayName": "Review",
+    "category": "Operations"
+  },
+  {
+    "name": "rotate",
+    "displayName": "Rotate",
+    "category": "Operations"
+  },
+  {
+    "name": "scan-alt",
+    "displayName": "ScanAlt",
+    "category": "Operations"
+  },
+  {
+    "name": "scan-disabled",
+    "displayName": "ScanDisabled",
+    "category": "Operations"
+  },
+  {
+    "name": "scan",
+    "displayName": "Scan",
+    "category": "Operations"
+  },
+  {
+    "name": "search-locate",
+    "displayName": "SearchLocate",
+    "category": "Operations"
+  },
+  {
+    "name": "search",
+    "displayName": "Search",
+    "category": "Operations"
+  },
+  {
+    "name": "send-alt-filled",
+    "displayName": "SendAltFilled",
+    "category": "Operations"
+  },
+  {
+    "name": "send-alt",
+    "displayName": "SendAlt",
+    "category": "Operations"
+  },
+  {
+    "name": "send-filled",
+    "displayName": "SendFilled",
+    "category": "Operations"
+  },
+  {
+    "name": "send",
+    "displayName": "Send",
+    "category": "Operations"
+  },
+  {
+    "name": "tag-edit",
+    "displayName": "TagEdit",
+    "category": "Operations"
+  },
+  {
+    "name": "tag-export",
+    "displayName": "TagExport",
+    "category": "Operations"
+  },
+  {
+    "name": "tag-group",
+    "displayName": "TagGroup",
+    "category": "Operations"
+  },
+  {
+    "name": "tag-import",
+    "displayName": "TagImport",
+    "category": "Operations"
+  },
+  {
+    "name": "tag",
+    "displayName": "Tag",
+    "category": "Operations"
+  },
+  {
+    "name": "tag-none",
+    "displayName": "TagNone",
+    "category": "Operations"
+  },
+  {
+    "name": "translate",
+    "displayName": "Translate",
+    "category": "Operations"
+  },
+  {
+    "name": "undo",
+    "displayName": "Undo",
+    "category": "Operations"
+  },
+  {
+    "name": "upgrade",
+    "displayName": "Upgrade",
+    "category": "Operations"
+  },
+  {
+    "name": "x-axis",
+    "displayName": "XAxis",
+    "category": "Operations"
+  },
+  {
+    "name": "y-axis",
+    "displayName": "YAxis",
+    "category": "Operations"
+  },
+  {
+    "name": "z-axis",
+    "displayName": "ZAxis",
+    "category": "Operations"
+  },
+  {
+    "name": "saving",
+    "displayName": "Saving",
+    "category": "Status"
+  },
+  {
+    "name": "notification-filled",
+    "displayName": "NotificationFilled",
+    "category": "Toggle"
+  },
+  {
+    "name": "notification",
+    "displayName": "Notification",
+    "category": "Toggle"
+  },
+  {
+    "name": "star",
+    "displayName": "Star",
+    "category": "Toggle"
+  }
+]
