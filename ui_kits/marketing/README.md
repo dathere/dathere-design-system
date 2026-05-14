@@ -1,9 +1,17 @@
-# Marketing UI kit — datHere.com style
+# ⚠ Marketing UI kit — FLAGGED FOR REVIEW (2026-05-14)
 
-A high-fidelity recreation of what the `dathere.com` corporate marketing
+> **Status: do not use as canonical reference.**
+> This kit was partially inferred from datHere product repos that were built
+> without a design system. Even where it claims to follow Carbon + brand blue,
+> individual component decisions have not been audited against Carbon specs.
+> **Decision pending:** purge and rebuild from Carbon component specs ground up.
+
+~~Marketing UI kit — datHere.com style~~
+
+~~A high-fidelity recreation of what the `dathere.com` corporate marketing
 site looks and feels like, built from the brand foundation (Carbon white
 theme + brand blue + IBM Plex). This kit is **not** a copy of any specific
-page on dathere.com — that site's source was not provided.
+page on dathere.com — that site's source was not provided.~~
 
 ## Files
 - `index.html` — composed marketing landing page (hero → product grid →

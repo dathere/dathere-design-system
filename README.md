@@ -44,14 +44,15 @@ Everything here was derived from materials the project owner provided:
   inferred system of record because the wordmark blue exactly matches Carbon's
   `blue60` (`#0F62FE`) and the icon navy matches `blue90` (`#001D6C`).
 - **datHere repos browsed for product context**:
-  - `dathere/qsv` — flagship Rust CLI (README + docs/)
-  - `dathere/nmwd-theme` — CKAN theme for New Mexico Water Data
-  - `dathere/ckanext-boernetx_theme` — CKAN theme for Boerne TX
-  - `a5dur/de-intern-guide` — Docusaurus intern guide (where the canonical
-    `datHere-logo.png` / `datHere-logo-dark.png` PNGs live)
-  - `dathere/qsv-pro-releases` — desktop GUI release notes
-- Pull from these repos directly if you need more material — they are public
-  on github.com/dathere and github.com/a5dur (the org's primary maintainer).
+  - `dathere/qsv` — flagship Rust CLI (README + docs/) — used for **copy/voice only**
+  - `a5dur/de-intern-guide` — Docusaurus intern guide (canonical logo PNGs)
+  - `dathere/qsv-pro-releases` — desktop GUI release notes — used for **copy only**
+
+> ⚠ **Flagged 2026-05-14:** `dathere/nmwd-theme` and `dathere/ckanext-boernetx_theme`
+> were originally used as design sources for the `ui_kits/` directory. Those products
+> were built **without any design system or visual guidelines**. Any patterns inferred
+> from them should be considered suspect. The `ui_kits/` files are flagged for review
+> and possible replacement — see individual `README.md` files in each kit directory.
 
 > ⚠️ If you have access to a Figma file, a brand-book PDF, or production
 > screenshots of `qsv pro`, please attach them — the kit fidelity goes up
@@ -352,10 +353,10 @@ Helvetica Neue, so this is consistent with historical datHere CSS).
 - `assets/` — every brand image, logo variant, and topical icon.
 - `preview/` — small spec cards that render in the project's Design System
   tab. Browse `preview/index.html` if you want them all on one page.
-- `ui_kits/marketing/` — `index.html` plus JSX components for the corporate
-  marketing site style (hero, features grid, footer).
-- `ui_kits/ckan-portal/` — `index.html` plus JSX components for a CKAN data
-  portal (search, dataset cards, dataset detail, organization list).
+- `ui_kits/marketing/` — ⚠ **FLAGGED FOR REVIEW** — JSX components partially inferred
+  from design-systemless product repos. Do not use as canonical reference.
+- `ui_kits/ckan-portal/` — ⚠ **FLAGGED FOR REVIEW** — derived from `nmwd-theme` /
+  `ckanext-boernetx_theme` templates. Same caveat.
 - `SKILL.md` — manifest that lets this folder be packaged as a Claude
   Skill for use in Claude Code or Agent SDK contexts.
 

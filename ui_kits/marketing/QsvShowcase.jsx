@@ -1,24 +1,43 @@
+/* ⚠ REVIEW BEFORE USE — flagged 2026-05-14
+ * Derived from dathere/nmwd-theme + dathere/ckanext-boernetx_theme CKAN templates.
+ * Those products were built without a design system. Patterns here may NOT
+ * conform to Carbon white-theme or datHere brand guidelines.
+ * Do not treat this file as canonical. Audit against colors_and_type.css
+ * tokens and Carbon component specs before shipping or referencing.
+ * Decision pending: purge & rebuild from Carbon ground up.
+ */
 /* global React */
 function QsvShowcase() {
   const [tab, setTab] = React.useState('stats');
   const commands = {
     stats: [
       { c: '# Compute 47 summary stats over a 28M-row CSV', cls: 'c' },
-      { c: '$ ', cls: 'p' }, { c: 'qsv stats nyc311.csv --everything\n', cls: 'k' },
-      { c: '\n[' , cls: 'd' }, { c: '████████████████████', cls: 'b' }, { c: '] 28,127,442 rows · 11.87s\n', cls: 'd' },
+      { c: '$ ', cls: 'p' }, { c: 'qsv stats nyc311.csv --everything
+', cls: 'k' },
+      { c: '
+[' , cls: 'd' }, { c: '████████████████████', cls: 'b' }, { c: '] 28,127,442 rows · 11.87s
+', cls: 'd' },
     ],
     validate: [
       { c: '# Validate every row against an inferred JSON Schema', cls: 'c' },
-      { c: '$ ', cls: 'p' }, { c: 'qsv validate nyc311.csv schema.json\n', cls: 'k' },
-      { c: '\n', cls: 'd' },
-      { c: '✓ ', cls: 'g' }, { c: '28,127,027 rows valid\n', cls: 'd' },
-      { c: '⚠ ', cls: 'y' }, { c: '   415 rows rejected → invalid_rows.csv\n', cls: 'd' },
-      { c: '  → 780,031 rows/sec\n', cls: 'd' },
+      { c: '$ ', cls: 'p' }, { c: 'qsv validate nyc311.csv schema.json
+', cls: 'k' },
+      { c: '
+', cls: 'd' },
+      { c: '✓ ', cls: 'g' }, { c: '28,127,027 rows valid
+', cls: 'd' },
+      { c: '⚠ ', cls: 'y' }, { c: '   415 rows rejected → invalid_rows.csv
+', cls: 'd' },
+      { c: '  → 780,031 rows/sec
+', cls: 'd' },
     ],
     join: [
       { c: '# Join 1M rows × 9 cols in under 600ms (joinp, polars)', cls: 'c' },
-      { c: '$ ', cls: 'p' }, { c: 'qsv joinp left=lhs.csv right=rhs.csv key=id\n', cls: 'k' },
-      { c: '\n→ 1,000,000 rows joined in 581ms\n', cls: 'd' },
+      { c: '$ ', cls: 'p' }, { c: 'qsv joinp left=lhs.csv right=rhs.csv key=id
+', cls: 'k' },
+      { c: '
+→ 1,000,000 rows joined in 581ms
+', cls: 'd' },
     ],
   };
 

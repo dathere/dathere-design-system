@@ -1,10 +1,15 @@
-# CKAN portal UI kit
+# ⚠ CKAN portal UI kit — FLAGGED FOR REVIEW (2026-05-14)
 
-A high-fidelity recreation of a **datHere CKAN data portal** in the style
+> **Status: do not use as canonical reference.**
+> This kit was derived from `dathere/nmwd-theme` and `dathere/ckanext-boernetx_theme`
+> CKAN templates — products built without any design system or visual guidelines.
+> Patterns here likely violate Carbon white-theme conventions and datHere brand rules.
+> **Decision pending:** purge and rebuild from Carbon component specs ground up.
+
+~~A high-fidelity recreation of a **datHere CKAN data portal**~~ in the style
 of `catalog.newmexicowaterdata.org` and similar deployments built on
 `dathere/nmwd-theme` and `dathere/ckanext-boernetx_theme`. Recreated by
-reading the upstream CKAN theme templates and CSS, not by guessing from
-screenshots.
+reading the upstream CKAN theme templates and CSS.
 
 ## Screens (toggle from the top tab strip on `index.html`)
 

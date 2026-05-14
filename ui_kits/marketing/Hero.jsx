@@ -1,3 +1,11 @@
+/* ⚠ REVIEW BEFORE USE — flagged 2026-05-14
+ * Derived from dathere/nmwd-theme + dathere/ckanext-boernetx_theme CKAN templates.
+ * Those products were built without a design system. Patterns here may NOT
+ * conform to Carbon white-theme or datHere brand guidelines.
+ * Do not treat this file as canonical. Audit against colors_and_type.css
+ * tokens and Carbon component specs before shipping or referencing.
+ * Decision pending: purge & rebuild from Carbon ground up.
+ */
 /* global React */
 function Hero() {
   return (

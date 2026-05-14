@@ -1,3 +1,11 @@
+/* ⚠ REVIEW BEFORE USE — flagged 2026-05-14
+ * Derived from dathere/nmwd-theme + dathere/ckanext-boernetx_theme CKAN templates.
+ * Those products were built without a design system. Patterns here may NOT
+ * conform to Carbon white-theme or datHere brand guidelines.
+ * Do not treat this file as canonical. Audit against colors_and_type.css
+ * tokens and Carbon component specs before shipping or referencing.
+ * Decision pending: purge & rebuild from Carbon ground up.
+ */
 /* global React */
 function DatasetDetail() {
   const [tab, setTab] = React.useState('resources');
@@ -9,7 +17,7 @@ function DatasetDetail() {
   ];
 
   const schema = [
-    ['site_id',         'string',   'Required · pattern ^[A-Z]{2}\\d{6}$',     '4,182 unique'],
+    ['site_id',         'string',   'Required · pattern ^[A-Z]{2}\d{6}$',     '4,182 unique'],
     ['sample_date',     'date',     'Required · 2010-01-01 → 2024-12-31',      '5,114 unique days'],
     ['parameter_code',  'string',   'Required · enum from epa-codes.csv',      '142 values'],
     ['value',           'number',   '0 ≤ value ≤ 99,999',                       'min 0.00 / max 8,940.2'],
@@ -142,10 +150,10 @@ function DatasetDetail() {
           {tab === 'api' && (
             <div style={dd.apiBox}>
               <div style={dd.apiLabel}>cURL</div>
-              <pre style={dd.apiCode}>{`curl -H "Authorization: Bearer $TOKEN" \\
-  "https://catalog.newmexicowaterdata.org/api/3/action/datastore_search?\\
-resource_id=nm-water-quality-samples-2010-2024&\\
-filters={\\"parameter_code\\":\\"NO3\\"}&\\
+              <pre style={dd.apiCode}>{`curl -H "Authorization: Bearer $TOKEN" \
+  "https://catalog.newmexicowaterdata.org/api/3/action/datastore_search?\
+resource_id=nm-water-quality-samples-2010-2024&\
+filters={\"parameter_code\":\"NO3\"}&\
 limit=100"`}</pre>
               <div style={{ ...dd.apiLabel, marginTop: 16 }}>SQL (CKAN datastore)</div>
               <pre style={dd.apiCode}>{`SELECT site_id, sample_date, value, unit
