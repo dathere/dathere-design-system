@@ -1,0 +1,324 @@
+// =============================================================================
+// datHere Design System — SCSS Source
+// -----------------------------------------------------------------------------
+// Derives tokens from official Carbon packages:
+//   @carbon/themes   → semantic color tokens (white theme)
+//   @carbon/layout   → spacing scale (spacing-01 through spacing-13)
+//   @carbon/motion   → duration + easing tokens
+//   @carbon/type     → type scale utilities (font families)
+//   @carbon/grid     → grid breakpoints + gutter tokens
+//   @carbon/colors   → raw color palette (TypeScript-only; values mirrored)
+//   @carbon/styles   → available for component-level SCSS imports
+//
+// Compile:  npm run build:tokens
+// Watch:    npm run watch:tokens
+// Output:   ../../colors_and_type.css
+// =============================================================================
+
+@use 'sass:map';
+@use '@carbon/themes/scss/themes' as themes;
+@use '@carbon/layout' as layout;
+@use '@carbon/motion' as motion;
+@use '@carbon/grid/scss/config' as grid;
+
+// Google Fonts — IBM Plex families
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Serif:wght@300;400;600&display=swap");
+
+// White theme map shorthand
+$w: themes.$white;
+
+:root {
+  // ===========================================================================
+  // 1. BASE COLOR SCALE — raw Carbon v11 palette.
+  //    @carbon/colors is TypeScript-only; values mirrored from:
+  //    node_modules/@carbon/colors/src/colors.ts
+  // ===========================================================================
+
+  // Brand blue scale
+  --dh-blue-10:  #edf5ff;
+  --dh-blue-20:  #d0e2ff;
+  --dh-blue-30:  #a6c8ff;
+  --dh-blue-40:  #78a9ff;
+  --dh-blue-50:  #4589ff;
+  --dh-blue-60:  #0f62fe;   // brand primary (logo wordmark)
+  --dh-blue-70:  #0043ce;
+  --dh-blue-80:  #002d9c;
+  --dh-blue-90:  #001d6c;   // brand navy (logo hex icon)
+  --dh-blue-100: #001141;
+
+  // Neutral gray scale
+  --dh-gray-10:  #f4f4f4;
+  --dh-gray-20:  #e0e0e0;
+  --dh-gray-30:  #c6c6c6;
+  --dh-gray-40:  #a8a8a8;
+  --dh-gray-50:  #8d8d8d;
+  --dh-gray-60:  #6f6f6f;
+  --dh-gray-70:  #525252;
+  --dh-gray-80:  #393939;
+  --dh-gray-90:  #262626;
+  --dh-gray-100: #161616;
+  --dh-white:    #ffffff;
+  --dh-black:    #000000;
+
+  // Support / status colors
+  --dh-red-50:    #fa4d56;
+  --dh-red-60:    #da1e28;
+  --dh-green-50:  #24a148;
+  --dh-green-60:  #198038;
+  --dh-yellow-30: #f1c21b;
+  --dh-yellow-60: #b28600;
+  --dh-orange-40: #ff832b;
+  --dh-purple-60: #8a3ffc;
+  --dh-cyan-70:   #00539a;
+  --dh-teal-60:   #007d79;
+
+  // ===========================================================================
+  // 2. SEMANTIC TOKENS — sourced from @carbon/themes white theme map.
+  //    Token keys match Carbon's naming; --dh- prefix applied.
+  // ===========================================================================
+
+  // Background
+  --dh-background:          #{map.get($w, 'background')};
+  --dh-background-inverse:  #{map.get($w, 'background-inverse')};
+  --dh-background-brand:    #{map.get($w, 'background-brand')};
+  --dh-background-hover:    #{map.get($w, 'background-hover')};
+  --dh-background-active:   #{map.get($w, 'background-active')};
+  --dh-background-selected: #{map.get($w, 'background-selected')};
+
+  // Layer
+  --dh-layer-01:          #{map.get($w, 'layer-01')};
+  --dh-layer-02:          #{map.get($w, 'layer-02')};
+  --dh-layer-03:          #{map.get($w, 'layer-03')};
+  --dh-layer-hover-01:    #{map.get($w, 'layer-hover-01')};
+  --dh-layer-selected-01: #{map.get($w, 'layer-selected-01')};
+  --dh-layer-accent-01:   #{map.get($w, 'layer-accent-01')};
+
+  // Field
+  --dh-field-01: #{map.get($w, 'field-01')};
+  --dh-field-02: #{map.get($w, 'field-02')};
+
+  // Border
+  --dh-border-subtle-00:   #{map.get($w, 'border-subtle-00')};
+  --dh-border-subtle-01:   #{map.get($w, 'border-subtle-01')};
+  --dh-border-strong-01:   #{map.get($w, 'border-strong-01')};
+  --dh-border-inverse:     #{map.get($w, 'border-inverse')};
+  --dh-border-interactive: #{map.get($w, 'border-interactive')};
+  --dh-border-disabled:    #{map.get($w, 'border-disabled')};
+  --dh-border-tile-01:     #{map.get($w, 'border-tile-01')};
+
+  // Text
+  --dh-text-primary:     #{map.get($w, 'text-primary')};
+  --dh-text-secondary:   #{map.get($w, 'text-secondary')};
+  --dh-text-helper:      #{map.get($w, 'text-helper')};
+  --dh-text-placeholder: #{map.get($w, 'text-placeholder')};
+  --dh-text-on-color:    #{map.get($w, 'text-on-color')};
+  --dh-text-inverse:     #{map.get($w, 'text-inverse')};
+  --dh-text-error:       #{map.get($w, 'text-error')};
+  --dh-text-disabled:    #{map.get($w, 'text-disabled')};
+
+  // Link
+  --dh-link-primary:       #{map.get($w, 'link-primary')};
+  --dh-link-primary-hover: #{map.get($w, 'link-primary-hover')};
+  --dh-link-visited:       #{map.get($w, 'link-visited')};
+  --dh-link-inverse:       #{map.get($w, 'link-inverse')};
+
+  // Icon
+  --dh-icon-primary:     #{map.get($w, 'icon-primary')};
+  --dh-icon-secondary:   #{map.get($w, 'icon-secondary')};
+  --dh-icon-on-color:    #{map.get($w, 'icon-on-color')};
+  --dh-icon-interactive: #{map.get($w, 'icon-interactive')};
+
+  // Support / status
+  --dh-support-error:   #{map.get($w, 'support-error')};
+  --dh-support-success: #{map.get($w, 'support-success')};
+  --dh-support-warning: #{map.get($w, 'support-warning')};
+  --dh-support-info:    #{map.get($w, 'support-info')};
+
+  // Focus
+  --dh-focus:       #{map.get($w, 'focus')};
+  --dh-focus-inset: #{map.get($w, 'focus-inset')};
+
+  // Interactive
+  --dh-interactive: #{map.get($w, 'interactive')};
+  --dh-highlight:   #{map.get($w, 'highlight')};
+  --dh-overlay:     #{map.get($w, 'overlay')};
+  --dh-shadow:      #{map.get($w, 'shadow')};
+
+  // ===========================================================================
+  // 3. TYPE — IBM Plex families + Carbon productive/expressive scale.
+  //    @carbon/type provides the scale function and style mixins.
+  //    CSS shorthand vars listed here for direct consumption.
+  // ===========================================================================
+
+  --dh-font-sans:  "IBM Plex Sans", -apple-system, BlinkMacSystemFont,
+                   "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --dh-font-mono:  "IBM Plex Mono", "SF Mono", Menlo, Consolas,
+                   "Liberation Mono", monospace;
+  --dh-font-serif: "IBM Plex Serif", Georgia, Cambria, "Times New Roman",
+                   Times, serif;
+
+  // Productive type — body / UI
+  --dh-type-caption-01:     400 12px/16px var(--dh-font-sans);
+  --dh-type-label-01:       400 12px/16px var(--dh-font-sans);
+  --dh-type-helper-text-01: 400 12px/16px var(--dh-font-sans);
+  --dh-type-body-short-01:  400 14px/18px var(--dh-font-sans);
+  --dh-type-body-long-01:   400 14px/20px var(--dh-font-sans);
+  --dh-type-body-short-02:  400 16px/22px var(--dh-font-sans);
+  --dh-type-body-long-02:   400 16px/24px var(--dh-font-sans);
+  --dh-type-code-01:        400 12px/16px var(--dh-font-mono);
+  --dh-type-code-02:        400 14px/20px var(--dh-font-mono);
+
+  // Productive headings
+  --dh-type-heading-01: 600 14px/18px var(--dh-font-sans);
+  --dh-type-heading-02: 600 16px/22px var(--dh-font-sans);
+  --dh-type-heading-03: 400 20px/28px var(--dh-font-sans);
+  --dh-type-heading-04: 400 28px/36px var(--dh-font-sans);
+  --dh-type-heading-05: 400 32px/40px var(--dh-font-sans);
+  --dh-type-heading-06: 300 42px/50px var(--dh-font-sans);
+  --dh-type-heading-07: 300 54px/64px var(--dh-font-sans);
+
+  // Expressive — marketing / hero
+  --dh-type-expressive-03: 400 20px/28px var(--dh-font-sans);
+  --dh-type-expressive-04: 400 28px/36px var(--dh-font-sans);
+  --dh-type-expressive-05: 300 36px/44px var(--dh-font-sans);
+  --dh-type-expressive-06: 600 42px/50px var(--dh-font-sans);
+
+  // Display — editorial / brand moments
+  --dh-type-display-01: 300  54px/64px  var(--dh-font-sans);
+  --dh-type-display-02: 600  54px/64px  var(--dh-font-sans);
+  --dh-type-display-03: 300  84px/88px  var(--dh-font-sans);
+  --dh-type-display-04: 300 122px/130px var(--dh-font-sans);
+
+  // ===========================================================================
+  // 4. SPACING — sourced from @carbon/layout ($spacing-01 … $spacing-13)
+  // ===========================================================================
+
+  --dh-spacing-01: #{layout.$spacing-01};   //   2px
+  --dh-spacing-02: #{layout.$spacing-02};   //   4px
+  --dh-spacing-03: #{layout.$spacing-03};   //   8px
+  --dh-spacing-04: #{layout.$spacing-04};   //  12px
+  --dh-spacing-05: #{layout.$spacing-05};   //  16px
+  --dh-spacing-06: #{layout.$spacing-06};   //  24px
+  --dh-spacing-07: #{layout.$spacing-07};   //  32px
+  --dh-spacing-08: #{layout.$spacing-08};   //  40px
+  --dh-spacing-09: #{layout.$spacing-09};   //  48px
+  --dh-spacing-10: #{layout.$spacing-10};   //  64px
+  --dh-spacing-11: #{layout.$spacing-11};   //  80px
+  --dh-spacing-12: #{layout.$spacing-12};   //  96px
+  --dh-spacing-13: #{layout.$spacing-13};   // 160px
+
+  // Layout scale — component/section density ($layout-01 … $layout-07)
+  --dh-layout-01: #{layout.$layout-01};   //  16px
+  --dh-layout-02: #{layout.$layout-02};   //  24px
+  --dh-layout-03: #{layout.$layout-03};   //  32px
+  --dh-layout-04: #{layout.$layout-04};   //  48px
+  --dh-layout-05: #{layout.$layout-05};   //  64px
+  --dh-layout-06: #{layout.$layout-06};   //  96px
+  --dh-layout-07: #{layout.$layout-07};   // 160px
+
+  // Component height scale — input/button/control sizing ($container-01 … $container-05)
+  --dh-size-01: #{layout.$container-01};  //  24px
+  --dh-size-02: #{layout.$container-02};  //  32px
+  --dh-size-03: #{layout.$container-03};  //  40px
+  --dh-size-04: #{layout.$container-04};  //  48px
+  --dh-size-05: #{layout.$container-05};  //  64px
+
+  // Icon sizes
+  --dh-icon-size-01: #{layout.$icon-size-01};  // 16px
+  --dh-icon-size-02: #{layout.$icon-size-02};  // 20px
+
+  // ===========================================================================
+  // 5. SHAPE — Carbon is square. Radii minimal; 0 default.
+  // ===========================================================================
+
+  --dh-radius-none: 0;
+  --dh-radius-sm:   2px;
+  --dh-radius-md:   4px;
+  --dh-radius-pill: 999px;
+
+  // ===========================================================================
+  // 6. ELEVATION — flat by default, subtle shadows
+  // ===========================================================================
+
+  --dh-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+  --dh-shadow-md: 0 2px 6px rgba(0, 0, 0, 0.10);
+  --dh-shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.14);
+
+  // ===========================================================================
+  // 7. MOTION — sourced from @carbon/motion ($duration-* + motion() function)
+  // ===========================================================================
+
+  --dh-motion-fast-01:     #{motion.$duration-fast-01};
+  --dh-motion-fast-02:     #{motion.$duration-fast-02};
+  --dh-motion-moderate-01: #{motion.$duration-moderate-01};
+  --dh-motion-moderate-02: #{motion.$duration-moderate-02};
+  --dh-motion-slow-01:     #{motion.$duration-slow-01};
+  --dh-motion-slow-02:     #{motion.$duration-slow-02};
+
+  --dh-ease-productive-standard:  #{motion.motion(standard,  productive)};
+  --dh-ease-productive-entrance:  #{motion.motion(entrance,  productive)};
+  --dh-ease-productive-exit:      #{motion.motion(exit,      productive)};
+  --dh-ease-expressive-standard:  #{motion.motion(standard,  expressive)};
+  --dh-ease-expressive-entrance:  #{motion.motion(entrance,  expressive)};
+  --dh-ease-expressive-exit:      #{motion.motion(exit,      expressive)};
+
+  // ===========================================================================
+  // 8. LAYOUT — sourced from @carbon/grid ($grid-breakpoints, $flex-grid-columns,
+  //    $grid-gutter). Container aliases for convenience.
+  // ===========================================================================
+
+  // Breakpoints — sourced from @carbon/grid $grid-breakpoints map
+  --dh-bp-sm:  #{map.get(map.get(grid.$grid-breakpoints, 'sm'),  'width')};   // 20rem  / 320px
+  --dh-bp-md:  #{map.get(map.get(grid.$grid-breakpoints, 'md'),  'width')};   // 42rem  / 672px
+  --dh-bp-lg:  #{map.get(map.get(grid.$grid-breakpoints, 'lg'),  'width')};   // 66rem  / 1056px
+  --dh-bp-xlg: #{map.get(map.get(grid.$grid-breakpoints, 'xlg'), 'width')};   // 82rem  / 1312px
+  --dh-bp-max: #{map.get(map.get(grid.$grid-breakpoints, 'max'), 'width')};   // 99rem  / 1584px
+
+  // Grid config — sourced from @carbon/grid $flex-grid-columns / $grid-gutter
+  --dh-grid-columns: #{grid.$flex-grid-columns};   // 16
+  --dh-grid-gutter:  #{grid.$grid-gutter};         // 2rem
+
+  --dh-container-sm:  640px;
+  --dh-container-md:  768px;
+  --dh-container-lg:  #{map.get(map.get(grid.$grid-breakpoints, 'lg'),  'width')};   // 1056px
+  --dh-container-xl:  #{map.get(map.get(grid.$grid-breakpoints, 'xlg'), 'width')};   // 1312px
+  --dh-container-max: #{map.get(map.get(grid.$grid-breakpoints, 'max'), 'width')};   // 1584px
+}
+
+// =============================================================================
+// SEMANTIC HTML DEFAULTS
+// =============================================================================
+
+html {
+  font-family: var(--dh-font-sans);
+  font-size: 16px;
+  color: var(--dh-text-primary);
+  background: var(--dh-background);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font: var(--dh-type-body-long-01);
+  color: var(--dh-text-primary);
+}
+
+h1, .dh-h1 { font: var(--dh-type-heading-06); letter-spacing: -0.01em; color: var(--dh-text-primary); }
+h2, .dh-h2 { font: var(--dh-type-heading-05); letter-spacing: 0;        color: var(--dh-text-primary); }
+h3, .dh-h3 { font: var(--dh-type-heading-04); letter-spacing: 0;        color: var(--dh-text-primary); }
+h4, .dh-h4 { font: var(--dh-type-heading-03);                            color: var(--dh-text-primary); }
+h5, .dh-h5 { font: var(--dh-type-heading-02);                            color: var(--dh-text-primary); }
+h6, .dh-h6 { font: var(--dh-type-heading-01);                            color: var(--dh-text-primary); }
+
+p          { font: var(--dh-type-body-long-01); color: var(--dh-text-primary); }
+small      { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); }
+strong     { font-weight: 600; }
+code, pre  { font-family: var(--dh-font-mono); }
+
+a          { color: var(--dh-link-primary); text-decoration: none; }
+a:hover    { color: var(--dh-link-primary-hover); text-decoration: underline; }
+a:visited  { color: var(--dh-link-visited); }
+
+pre        { font: var(--dh-type-code-02); color: var(--dh-text-primary); background: var(--dh-gray-90); color: var(--dh-white); padding: var(--dh-spacing-05); overflow-x: auto; }
+hr         { border: 0; border-top: 1px solid var(--dh-border-subtle-01); margin: var(--dh-spacing-06) 0; }

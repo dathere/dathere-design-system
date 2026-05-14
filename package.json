@@ -3,8 +3,23 @@
   "version": "1.0.0",
   "private": true,
   "description": "datHere design system — Carbon white theme",
+  "scripts": {
+    "build:tokens": "sass src/styles/main.scss colors_and_type.css --style=expanded --no-source-map --load-path=node_modules",
+    "watch:tokens": "sass src/styles/main.scss colors_and_type.css --watch --no-source-map --load-path=node_modules"
+  },
   "dependencies": {
     "@carbon/icons": "^11.80.0",
-    "@carbon/icons-motion": "^2.3.0"
+    "@carbon/icons-motion": "^2.3.0",
+    "@carbon/pictograms": "^12.75.0"
+  },
+  "devDependencies": {
+    "@carbon/colors": "^11.51.0",
+    "@carbon/grid": "^11.55.0",
+    "@carbon/layout": "^11.52.0",
+    "@carbon/motion": "^11.45.0",
+    "@carbon/styles": "^1.106.0",
+    "@carbon/themes": "^11.73.0",
+    "@carbon/type": "^11.59.0",
+    "sass": "^1.99.0"
   }
 }
