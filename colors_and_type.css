@@ -246,7 +246,7 @@ a:hover {
 }
 
 a:visited {
-  color: var(--dh-link-visited);
+  color: var(--dh-link-primary);
 }
 
 pre {

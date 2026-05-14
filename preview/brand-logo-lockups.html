@@ -1,26 +1,316 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>datHere — Brand Logo Lockups</title>
 <link rel="stylesheet" href="../colors_and_type.css">
 <style>
-  body { margin: 0; padding: 0; background: #fff; }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; min-height: 200px; }
-  .tile { display: flex; align-items: center; justify-content: center; padding: 24px; }
-  .tile.dark  { background: var(--dh-blue-90); }
-  .tile.light { background: var(--dh-white); border: 1px solid var(--dh-border-subtle-01); border-left: 0; }
-  .tile img { max-width: 80%; max-height: 90px; }
-  .label { position: absolute; font: var(--dh-type-code-01); color: var(--dh-text-helper); padding: 6px 8px; }
-  .tile { position: relative; }
-  .dark .label  { color: rgba(255,255,255,0.7); }
-</style></head>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--dh-gray-10); font-family: var(--dh-font-sans); }
+
+  .page-header {
+    padding: 40px 48px 32px;
+    border-bottom: 1px solid var(--dh-border-subtle-01);
+    background: var(--dh-white);
+  }
+  .page-header h1 { font: var(--dh-type-heading-04); color: var(--dh-text-primary); }
+  .page-header p  { font: var(--dh-type-body-short-01); color: var(--dh-text-secondary); margin-top: 4px; }
+
+  .section { padding: 40px 48px; }
+  .section + .section { border-top: 1px solid var(--dh-border-subtle-01); }
+  .section-title {
+    font: var(--dh-type-heading-02);
+    color: var(--dh-text-primary);
+    margin-bottom: 4px;
+  }
+  .section-desc {
+    font: var(--dh-type-body-short-01);
+    color: var(--dh-text-secondary);
+    margin-bottom: 24px;
+  }
+
+  /* Tile grid */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1px; background: var(--dh-border-subtle-01); border: 1px solid var(--dh-border-subtle-01); }
+  .tile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 32px 20px;
+    min-height: 160px;
+    position: relative;
+    background: var(--dh-white);
+  }
+  .tile.bg-white    { background: #ffffff; }
+  .tile.bg-gray-10  { background: var(--dh-gray-10); }
+  .tile.bg-gray-90  { background: var(--dh-gray-90); }
+  .tile.bg-gray-100 { background: var(--dh-gray-100); }
+  .tile.bg-navy     { background: var(--dh-blue-90); }
+  .tile.bg-blue-60  { background: var(--dh-blue-60); }
+  .tile.bg-blue-70  { background: var(--dh-blue-70); }
+
+  .tile img { max-width: 80%; max-height: 80px; object-fit: contain; }
+
+  .chip {
+    position: absolute;
+    top: 10px; left: 12px;
+    font: var(--dh-type-caption-01);
+    color: var(--dh-text-helper);
+    opacity: 0.7;
+  }
+  .tile.bg-gray-90 .chip,
+  .tile.bg-gray-100 .chip,
+  .tile.bg-navy .chip,
+  .tile.bg-blue-60 .chip,
+  .tile.bg-blue-70 .chip { color: rgba(255,255,255,0.55); }
+
+  /* ── Wordmark ── */
+  .wm {
+    font-family: var(--dh-font-sans);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .wm-lg { font-size: 36px; }
+  .wm-md { font-size: 24px; }
+  .wm-sm { font-size: 16px; }
+
+  /* Split: dat = blue, Here = context-dependent */
+  .wm .dat  { color: var(--dh-blue-60); }
+
+  /* on light bg */
+  .wm-on-light .here { color: var(--dh-gray-100); }
+  /* on dark bg */
+  .wm-on-dark  .here { color: #ffffff; }
+  /* on brand blue bg — dat goes white so it reads */
+  .wm-on-blue  .dat  { color: #ffffff; }
+  .wm-on-blue  .here { color: rgba(255,255,255,0.85); }
+
+  /* ── Lockup (icon hex + wordmark) ── */
+  .lockup {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .lockup-icon {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+  .lockup-icon svg { width: 100%; height: 100%; }
+
+  /* Icon hex SVG fill colors */
+  .hex-white  { fill: #ffffff; }
+  .hex-navy   { fill: var(--dh-blue-90); }
+  .hex-blue   { fill: var(--dh-blue-60); }
+
+  /* ── Size swatch row ── */
+  .size-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding: 32px;
+    background: var(--dh-white);
+    border: 1px solid var(--dh-border-subtle-01);
+  }
+  .size-row.dark {
+    background: var(--dh-gray-100);
+    border-color: var(--dh-gray-80);
+  }
+  .size-item { display: flex; flex-direction: column; align-items: flex-start; gap: 8px; }
+  .size-label { font: var(--dh-type-caption-01); color: var(--dh-text-helper); }
+  .size-row.dark .size-label { color: rgba(255,255,255,0.45); }
+</style>
+</head>
 <body>
-  <div class="grid">
-    <div class="tile dark">
-      <span class="label">primary · dark bg</span>
-      <img src="../assets/logo-datHere-primary-dark-bg.png" alt="datHere logo on dark" />
+
+<div class="page-header">
+  <h1>Brand Logo Lockups</h1>
+  <p>datHere wordmark, lockup, and split-color variations across background contexts</p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     1. PNG ASSETS — existing approved files
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">PNG Assets</div>
+  <div class="section-desc">Approved raster exports — use for email, docs, external contexts.</div>
+  <div class="tiles">
+    <div class="tile bg-navy">
+      <span class="chip">primary · dark bg</span>
+      <img src="../assets/logo-datHere-primary-dark-bg.png" alt="datHere primary dark bg" />
     </div>
-    <div class="tile light">
-      <span class="label">primary · light bg</span>
-      <img src="../assets/logo-datHere-light.png" alt="datHere logo on light" />
+    <div class="tile bg-white">
+      <span class="chip">primary · light bg</span>
+      <img src="../assets/logo-datHere-light.png" alt="datHere light" />
+    </div>
+    <div class="tile bg-gray-100">
+      <span class="chip">dark variant</span>
+      <img src="../assets/logo-datHere-dark.png" alt="datHere dark" />
+    </div>
+    <div class="tile bg-blue-60">
+      <span class="chip">white variant</span>
+      <img src="../assets/logo-datHere-white.png" alt="datHere white" />
     </div>
   </div>
-</body></html>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     2. SPLIT-COLOR WORDMARK — dat·blue / Here·context
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Split-Color Wordmark</div>
+  <div class="section-desc"><code>dat</code> always blue-60 · <code>Here</code> adapts to background context</div>
+  <div class="tiles">
+
+    <!-- Light backgrounds -->
+    <div class="tile bg-white">
+      <span class="chip">white bg</span>
+      <span class="wm wm-lg wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="tile bg-gray-10">
+      <span class="chip">gray-10 bg</span>
+      <span class="wm wm-lg wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+
+    <!-- Dark backgrounds -->
+    <div class="tile bg-gray-90">
+      <span class="chip">gray-90 bg</span>
+      <span class="wm wm-lg wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="tile bg-gray-100">
+      <span class="chip">gray-100 bg</span>
+      <span class="wm wm-lg wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="tile bg-navy">
+      <span class="chip">navy bg (blue-90)</span>
+      <span class="wm wm-lg wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+
+    <!-- Blue backgrounds — dat goes white -->
+    <div class="tile bg-blue-60">
+      <span class="chip">blue-60 bg</span>
+      <span class="wm wm-lg wm-on-blue"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="tile bg-blue-70">
+      <span class="chip">blue-70 bg</span>
+      <span class="wm wm-lg wm-on-blue"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     3. SPLIT-COLOR LOCKUP — hex icon + wordmark
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Split-Color Lockup</div>
+  <div class="section-desc">Hex icon + wordmark — icon color adapts with background.</div>
+  <div class="tiles">
+
+    <div class="tile bg-white">
+      <span class="chip">white bg</span>
+      <div class="lockup">
+        <div class="lockup-icon">
+          <!-- hex icon: navy on light bg -->
+          <svg viewBox="0 0 40 46" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="hex-navy" points="20,1 39,11 39,35 20,45 1,35 1,11"/>
+          </svg>
+        </div>
+        <span class="wm wm-lg wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+      </div>
+    </div>
+
+    <div class="tile bg-gray-10">
+      <span class="chip">gray-10 bg</span>
+      <div class="lockup">
+        <div class="lockup-icon">
+          <svg viewBox="0 0 40 46" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="hex-navy" points="20,1 39,11 39,35 20,45 1,35 1,11"/>
+          </svg>
+        </div>
+        <span class="wm wm-lg wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+      </div>
+    </div>
+
+    <div class="tile bg-gray-100">
+      <span class="chip">gray-100 bg</span>
+      <div class="lockup">
+        <div class="lockup-icon">
+          <svg viewBox="0 0 40 46" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="hex-white" points="20,1 39,11 39,35 20,45 1,35 1,11"/>
+          </svg>
+        </div>
+        <span class="wm wm-lg wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+      </div>
+    </div>
+
+    <div class="tile bg-navy">
+      <span class="chip">navy bg</span>
+      <div class="lockup">
+        <div class="lockup-icon">
+          <svg viewBox="0 0 40 46" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="hex-white" points="20,1 39,11 39,35 20,45 1,35 1,11"/>
+          </svg>
+        </div>
+        <span class="wm wm-lg wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+      </div>
+    </div>
+
+    <div class="tile bg-blue-60">
+      <span class="chip">blue-60 bg</span>
+      <div class="lockup">
+        <div class="lockup-icon">
+          <svg viewBox="0 0 40 46" xmlns="http://www.w3.org/2000/svg">
+            <polygon class="hex-white" points="20,1 39,11 39,35 20,45 1,35 1,11"/>
+          </svg>
+        </div>
+        <span class="wm wm-lg wm-on-blue"><span class="dat">dat</span><span class="here">Here</span></span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     4. SIZE SCALE
+════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-title">Size Scale</div>
+  <div class="section-desc">Split-color wordmark at standard type sizes.</div>
+
+  <div class="size-row" style="margin-bottom: 1px;">
+    <div class="size-item">
+      <span class="size-label">lg · 36px</span>
+      <span class="wm wm-lg wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="size-item">
+      <span class="size-label">md · 24px</span>
+      <span class="wm wm-md wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="size-item">
+      <span class="size-label">sm · 16px</span>
+      <span class="wm wm-sm wm-on-light"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+  </div>
+
+  <div class="size-row dark">
+    <div class="size-item">
+      <span class="size-label">lg · 36px</span>
+      <span class="wm wm-lg wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="size-item">
+      <span class="size-label">md · 24px</span>
+      <span class="wm wm-md wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+    <div class="size-item">
+      <span class="size-label">sm · 16px</span>
+      <span class="wm wm-sm wm-on-dark"><span class="dat">dat</span><span class="here">Here</span></span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

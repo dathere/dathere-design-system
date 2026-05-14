@@ -318,7 +318,7 @@ code, pre  { font-family: var(--dh-font-mono); }
 
 a          { color: var(--dh-link-primary); text-decoration: none; }
 a:hover    { color: var(--dh-link-primary-hover); text-decoration: underline; }
-a:visited  { color: var(--dh-link-visited); }
+a:visited  { color: var(--dh-link-primary); }
 
 pre        { font: var(--dh-type-code-02); color: var(--dh-text-primary); background: var(--dh-gray-90); color: var(--dh-white); padding: var(--dh-spacing-05); overflow-x: auto; }
 hr         { border: 0; border-top: 1px solid var(--dh-border-subtle-01); margin: var(--dh-spacing-06) 0; }
