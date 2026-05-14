@@ -15,17 +15,8 @@ look and feel like datHere.
 
 ## About datHere
 
-datHere builds the plumbing for open-data ecosystems. Their product surface
-covers the full data lifecycle:
-
-| Product | What it is |
-|---|---|
-| **datHere CKAN DMS** | A managed/hardened distribution of [CKAN](https://ckan.org) — the open-source data management system that powers `data.gov`, `data.humdata.org`, `open.canada.ca/data`, and hundreds of municipal/state portals. |
-| **qsv** ([github](https://github.com/dathere/qsv)) | A blazing-fast Rust-based CLI for querying, slicing, joining, validating, and FAIRifying CSV / Excel / Parquet / JSONL data. |
-| **qsv pro** ([qsvpro.dathere.com](https://qsvpro.dathere.com)) | A desktop GUI wrapped around qsv — drop a spreadsheet, get instant stats, type-inference, validation, and an LLM-powered describegpt workflow. |
-| **datHere AI Chatbot** | A natural-language layer on top of a CKAN portal — ask questions, get back grounded SQL/CSV answers. |
-| **AI-Ready Data** | Consulting + tooling around making messy public datasets actually usable by LLMs (schema inference, validation, tag vocabularies). |
-| **Water Data Practice** | Sector-specific portals built on the datHere CKAN distribution. |
+datHere builds data-infrastructure tooling for open-data ecosystems — managed
+CKAN portals, data-wrangling CLIs, and AI-ready data pipelines.
 
 The audience is **data engineers, open-data publishers, civic-tech teams, and
 analysts** — practitioners who care about correctness, performance, and FAIR
@@ -97,18 +88,6 @@ headers, button labels, or marketing taglines.
 **Acronyms and jargon are explained inline on first use** — *"FAIR (Findable,
 Accessible, Interoperable, Reusable)"*, *"DMS (Data Management System)"*,
 *"NLP"*. After that, just use the short form.
-
-**Examples of copy in the wild**
-
-> *"qsv is a data-wrangling toolkit for querying, slicing, sorting, analyzing,
-> filtering, enriching, transforming, validating, joining, formatting,
-> converting, chatting, FAIRifying & documenting tabular data."*
->
-> *"Blazing-fast Data-Wrangling toolkit"* (tagline)
->
-> *"Hi-ho 'Quicksilver' away!"* (under the qsv logo — wink to the brand name)
->
-> *"Powering data hubs and data portals."* (CKAN positioning)
 
 ---
 
