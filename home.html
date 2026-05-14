@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Data Concierge — AI-Powered Federal Data Intelligence</title>
+  <meta name="description" content="Ask questions in plain English and get citation-backed answers with reproducible Jupyter notebooks — powered by federal statistical data sources." />
+  <link rel="stylesheet" href="./colors_and_type.css" />
+  <link rel="stylesheet" href="./assets/icons/carbon-motion/motion-icons.css" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    a { text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container    { max-width: var(--dh-container-xl); margin: 0 auto; padding: 0 var(--dh-spacing-06); }
+    .container-sm { max-width: var(--dh-container-lg); margin: 0 auto; padding: 0 var(--dh-spacing-06); }
+
+    /* Tags */
+    .tag {
+      display: inline-flex; align-items: center;
+      padding: 2px var(--dh-spacing-03);
+      border-radius: var(--dh-radius-sm);
+      font: var(--dh-type-label-01);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .tag-blue   { background: var(--dh-blue-20);        color: var(--dh-blue-70); }
+    .tag-green  { background: rgba(36,161,72,.14);       color: var(--dh-green-60); }
+    .tag-yellow { background: rgba(241,194,27,.2);       color: var(--dh-yellow-60); }
+    .tag-cyan   { background: rgba(0,83,154,.1);         color: var(--dh-cyan-70); }
+    .tag-gray   { background: var(--dh-gray-20);         color: var(--dh-text-secondary); }
+    .tag-purple { background: rgba(138,63,252,.1);       color: var(--dh-purple-60); }
+    .tag-red    { background: rgba(218,30,40,.1);        color: var(--dh-red-60); }
+    .tag-orange { background: rgba(255,131,43,.14);      color: #ba4e00; }
+    .tag-on-dark { background: rgba(255,255,255,.15);    color: rgba(255,255,255,.88); display: inline-flex; align-items: center; padding: 2px var(--dh-spacing-03); border-radius: var(--dh-radius-sm); font: var(--dh-type-label-01); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+    .tag-on-dark-blue { background: rgba(70,137,255,.2); color: var(--dh-blue-30); display: inline-flex; align-items: center; padding: 2px var(--dh-spacing-03); border-radius: var(--dh-radius-sm); font: var(--dh-type-label-01); font-weight: 500; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    /* Buttons */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: var(--dh-spacing-03);
+      padding: 0 var(--dh-spacing-07) 0 var(--dh-spacing-05);
+      height: var(--dh-size-04); background: var(--dh-blue-60); color: var(--dh-white);
+      font: var(--dh-type-body-short-02); border: none; cursor: pointer;
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .btn-primary:hover { background: var(--dh-blue-70); color: var(--dh-white); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: var(--dh-spacing-03);
+      padding: 0 var(--dh-spacing-07) 0 var(--dh-spacing-05);
+      height: var(--dh-size-04); background: transparent; color: var(--dh-blue-60);
+      font: var(--dh-type-body-short-02); border: 1px solid var(--dh-blue-60); cursor: pointer;
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .btn-secondary:hover { background: rgba(15,98,254,.06); color: var(--dh-blue-70); }
+
+    .btn-primary-inv {
+      display: inline-flex; align-items: center; gap: var(--dh-spacing-03);
+      padding: 0 var(--dh-spacing-07) 0 var(--dh-spacing-05);
+      height: var(--dh-size-04); background: var(--dh-white); color: var(--dh-blue-90);
+      font: var(--dh-type-body-short-02); font-weight: 500; border: none; cursor: pointer;
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .btn-primary-inv:hover { background: var(--dh-gray-10); color: var(--dh-blue-90); }
+
+    .btn-ghost-inv {
+      display: inline-flex; align-items: center; gap: var(--dh-spacing-03);
+      padding: 0 var(--dh-spacing-07) 0 var(--dh-spacing-05);
+      height: var(--dh-size-04); background: transparent; color: var(--dh-white);
+      font: var(--dh-type-body-short-02); border: 1px solid rgba(255,255,255,.5); cursor: pointer;
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .btn-ghost-inv:hover { background: rgba(255,255,255,.08); color: var(--dh-white); }
+
+    /* Nav */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--dh-gray-100);
+      border-bottom: 1px solid var(--dh-gray-80);
+      height: var(--dh-size-04);
+    }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: var(--dh-size-04); }
+    .nav-logo { display: flex; align-items: center; gap: var(--dh-spacing-03); }
+    .nav-logo img { height: 22px; }
+    .nav-divider { width: 1px; height: var(--dh-icon-size-01); background: var(--dh-gray-70); }
+    .nav-product { font: var(--dh-type-body-short-01); color: var(--dh-gray-40); }
+    .nav-links { display: flex; align-items: center; gap: var(--dh-spacing-06); }
+    .nav-links a {
+      font: var(--dh-type-body-short-01); color: var(--dh-gray-40);
+      transition: color var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .nav-links a:hover { color: var(--dh-white); }
+    .btn-nav {
+      display: inline-flex; align-items: center; gap: var(--dh-spacing-02);
+      padding: 0 var(--dh-spacing-05); height: var(--dh-size-02);
+      background: var(--dh-blue-60); color: var(--dh-white);
+      font: var(--dh-type-body-short-01); font-weight: 500;
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .btn-nav:hover { background: var(--dh-blue-70); color: var(--dh-white); }
+    @media (max-width: 768px) { .nav-links { display: none; } }
+
+    /* Hero */
+    .hero {
+      padding: var(--dh-layout-07) 0 var(--dh-layout-06);
+      margin-top: var(--dh-size-04);
+      background: var(--dh-blue-90);
+      background-image:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      position: relative; overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 120px;
+      background: linear-gradient(transparent, var(--dh-blue-90));
+      pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--dh-spacing-10); align-items: center; }
+    .hero-eyebrow { display: flex; gap: var(--dh-spacing-02); margin-bottom: var(--dh-spacing-06); }
+    .hero h1 {
+      font: 300 54px/64px var(--dh-font-sans);
+      letter-spacing: -0.01em; color: var(--dh-white);
+      margin-bottom: var(--dh-spacing-06);
+    }
+    .hero-accent { color: var(--dh-blue-40); }
+    .hero > .container > .hero-grid > div > p {
+      font: var(--dh-type-body-long-02);
+      color: rgba(255,255,255,.72);
+      margin-bottom: var(--dh-spacing-07); max-width: 480px;
+    }
+    .hero-actions { display: flex; gap: var(--dh-spacing-03); flex-wrap: wrap; }
+
+    /* Terminal */
+    .hero-terminal { background: var(--dh-gray-90); border: 1px solid var(--dh-gray-70); }
+    .terminal-header {
+      display: flex; align-items: center; gap: var(--dh-spacing-02);
+      padding: var(--dh-spacing-03) var(--dh-spacing-04);
+      background: var(--dh-gray-80); border-bottom: 1px solid var(--dh-gray-70);
+    }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot.red    { background: #ff5f57; }
+    .terminal-dot.yellow { background: #febc2e; }
+    .terminal-dot.green  { background: #28c840; }
+    .terminal-title { font: var(--dh-type-code-01); color: var(--dh-gray-50); margin-left: var(--dh-spacing-02); }
+    .terminal-body  { padding: var(--dh-spacing-06); font: var(--dh-type-code-02); line-height: 1.9; }
+    .t-prompt  { color: #42be65; }
+    .t-query   { color: var(--dh-white); }
+    .t-comment { color: var(--dh-gray-50); }
+    .t-key     { color: #f1c21b; }
+    .t-val     { color: #42be65; }
+    .t-string  { color: #be95ff; }
+    .t-num     { color: #78a9ff; }
+    .t-bar     { height: 2px; background: var(--dh-blue-60); margin: var(--dh-spacing-02) 0; animation: t-prog 2s ease-in-out infinite; }
+    @keyframes t-prog { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+    @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-terminal { display: none; } }
+
+    /* Stats */
+    .stats-bar {
+      padding: var(--dh-layout-04) 0;
+      background: var(--dh-background);
+      border-bottom: 1px solid var(--dh-border-subtle-00);
+    }
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+    .stat-item {
+      text-align: center;
+      padding: var(--dh-spacing-05) var(--dh-spacing-06);
+      border-right: 1px solid var(--dh-border-subtle-01);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number { font: 300 48px/1 var(--dh-font-sans); color: var(--dh-blue-60); }
+    .stat-label  { font: var(--dh-type-body-short-01); color: var(--dh-text-secondary); margin-top: var(--dh-spacing-02); }
+    @media (max-width: 640px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stat-item:nth-child(2) { border-right: none; }
+      .stat-item:nth-child(3) { border-right: 1px solid var(--dh-border-subtle-01); }
+    }
+
+    /* Section commons */
+    section { padding: var(--dh-layout-06) 0; }
+    .section-header { margin-bottom: var(--dh-layout-05); }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-desc { margin: 0 auto; }
+    .section-eyebrow { margin-bottom: var(--dh-spacing-04); }
+    .section-title { font: var(--dh-type-heading-05); color: var(--dh-text-primary); margin-bottom: var(--dh-spacing-04); }
+    .section-desc  { font: var(--dh-type-body-long-02); color: var(--dh-text-secondary); max-width: 560px; }
+
+    /* How It Works */
+    .how-it-works { background: var(--dh-layer-01); }
+    .steps { border: 1px solid var(--dh-border-subtle-01); border-bottom: none; }
+    .step {
+      display: grid; grid-template-columns: 56px 1fr;
+      gap: var(--dh-spacing-07); align-items: start;
+      padding: var(--dh-spacing-07); background: var(--dh-background);
+      border-bottom: 1px solid var(--dh-border-subtle-01);
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .step:hover { background: var(--dh-background-hover); }
+    .step-num {
+      width: var(--dh-size-02); height: var(--dh-size-02);
+      display: flex; align-items: center; justify-content: center;
+      font: var(--dh-type-heading-01); color: var(--dh-white);
+      background: var(--dh-blue-60); flex-shrink: 0; margin-top: 2px;
+    }
+    .step-content h3 { font: var(--dh-type-heading-03); color: var(--dh-text-primary); margin-bottom: var(--dh-spacing-03); }
+    .step-content p  { font: var(--dh-type-body-long-01); color: var(--dh-text-secondary); }
+    .step-tags { display: flex; gap: var(--dh-spacing-02); flex-wrap: wrap; margin-top: var(--dh-spacing-04); }
+    .step-tag {
+      font: var(--dh-type-code-01);
+      padding: 1px var(--dh-spacing-03);
+      background: var(--dh-gray-20); color: var(--dh-text-secondary);
+      border-radius: var(--dh-radius-sm);
+    }
+
+    /* Features */
+    .features-section { background: var(--dh-background); }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--dh-border-subtle-01);
+    }
+    .feature-card {
+      background: var(--dh-background); padding: var(--dh-spacing-07);
+      border-right: 1px solid var(--dh-border-subtle-01);
+      border-bottom: 1px solid var(--dh-border-subtle-01);
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .feature-card:nth-child(3n)        { border-right: none; }
+    .feature-card:nth-last-child(-n+3) { border-bottom: none; }
+    .feature-card:hover { background: var(--dh-layer-01); }
+    .feature-icon { width: var(--dh-size-01); height: var(--dh-size-01); margin-bottom: var(--dh-spacing-05); color: var(--dh-blue-60); display: flex; align-items: center; justify-content: center; }
+    .feature-card h3 { font: var(--dh-type-heading-02); color: var(--dh-text-primary); margin-bottom: var(--dh-spacing-03); }
+    .feature-card p  { font: var(--dh-type-body-long-01); color: var(--dh-text-secondary); }
+    @media (max-width: 900px) {
+      .features-grid { grid-template-columns: repeat(2, 1fr); }
+      .feature-card:nth-child(3n)        { border-right: 1px solid var(--dh-border-subtle-01); }
+      .feature-card:nth-child(2n)        { border-right: none; }
+      .feature-card:nth-last-child(-n+3) { border-bottom: 1px solid var(--dh-border-subtle-01); }
+      .feature-card:nth-last-child(-n+2) { border-bottom: none; }
+    }
+    @media (max-width: 560px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .feature-card { border-right: none !important; }
+      .feature-card:not(:last-child) { border-bottom: 1px solid var(--dh-border-subtle-01) !important; }
+      .feature-card:last-child { border-bottom: none !important; }
+    }
+
+    /* Data Sources */
+    .sources-section { background: var(--dh-layer-01); }
+    .sources-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--dh-spacing-05); }
+    .source-card {
+      background: var(--dh-background); border: 1px solid var(--dh-border-subtle-01);
+      padding: var(--dh-spacing-06); display: flex; flex-direction: column; gap: var(--dh-spacing-04);
+      transition: border-color var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .source-card:hover { border-color: var(--dh-border-interactive); }
+    .source-header { display: flex; align-items: center; gap: var(--dh-spacing-04); }
+    .source-logo { width: var(--dh-size-01); height: var(--dh-size-01); color: var(--dh-blue-60); display: flex; align-items: center; justify-content: center; }
+    .source-name { font: var(--dh-type-heading-01); color: var(--dh-text-primary); }
+    .source-desc { font: var(--dh-type-body-long-01); color: var(--dh-text-secondary); }
+    .source-meta { display: flex; gap: var(--dh-spacing-02); flex-wrap: wrap; }
+    @media (max-width: 900px) { .sources-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .sources-grid { grid-template-columns: 1fr; } }
+
+    /* Use Cases */
+    .use-cases-section { background: var(--dh-background); }
+    .use-cases-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--dh-spacing-05); }
+    .use-case-card {
+      background: var(--dh-layer-01); border: 1px solid var(--dh-border-subtle-01);
+      padding: var(--dh-spacing-07);
+      transition: border-color var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .use-case-card:hover { border-color: var(--dh-border-interactive); }
+    .use-case-icon { width: var(--dh-size-01); height: var(--dh-size-01); margin-bottom: var(--dh-spacing-04); color: var(--dh-blue-60); display: flex; align-items: center; justify-content: center; }
+    .use-case-card h3 { font: var(--dh-type-heading-03); color: var(--dh-text-primary); margin-bottom: var(--dh-spacing-03); }
+    .use-case-card > p { font: var(--dh-type-body-long-01); color: var(--dh-text-secondary); margin-bottom: var(--dh-spacing-05); }
+    .use-case-examples { display: flex; flex-direction: column; gap: var(--dh-spacing-03); }
+    .use-case-example {
+      padding: var(--dh-spacing-03) var(--dh-spacing-04);
+      background: var(--dh-background); border: 1px solid var(--dh-border-subtle-01);
+      border-left: 2px solid var(--dh-blue-60);
+      font: var(--dh-type-body-short-01); color: var(--dh-text-secondary); font-style: italic;
+    }
+    @media (max-width: 768px) { .use-cases-grid { grid-template-columns: 1fr; } }
+
+    /* Confidence */
+    .confidence-section { background: var(--dh-layer-01); }
+    .confidence-card {
+      background: var(--dh-background); border: 1px solid var(--dh-border-subtle-01);
+      padding: var(--dh-spacing-08);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--dh-spacing-10); align-items: start;
+    }
+    .conf-eyebrow { margin-bottom: var(--dh-spacing-04); }
+    .conf-title { font: var(--dh-type-heading-04); color: var(--dh-text-primary); margin-bottom: var(--dh-spacing-04); }
+    .conf-desc  { font: var(--dh-type-body-long-02); color: var(--dh-text-secondary); margin-bottom: var(--dh-spacing-06); }
+    .conf-level-list { display: flex; gap: var(--dh-spacing-02); flex-wrap: wrap; }
+    .conf-factors { display: flex; flex-direction: column; gap: var(--dh-spacing-05); }
+    .conf-factor-header { display: flex; justify-content: space-between; margin-bottom: var(--dh-spacing-02); }
+    .conf-factor-name   { font: var(--dh-type-body-short-01); font-weight: 500; color: var(--dh-text-primary); }
+    .conf-factor-weight { font: var(--dh-type-body-short-01); color: var(--dh-text-secondary); }
+    .conf-bar-track { height: 4px; background: var(--dh-gray-20); }
+    .conf-bar-fill  { height: 100%; background: var(--dh-blue-60); }
+    .conf-note { font: var(--dh-type-helper-text-01); color: var(--dh-text-helper); margin-top: var(--dh-spacing-04); }
+    @media (max-width: 768px) { .confidence-card { grid-template-columns: 1fr; } }
+
+    /* Pipeline */
+    .pipeline-section { background: var(--dh-background); }
+    .pipeline-visual-wrap { position: relative; }
+    .pipe-progress {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      z-index: 2;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .pipe-progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--dh-blue-60);
+      transition: width 80ms linear;
+    }
+    .pipeline-visual {
+      display: flex; overflow-x: auto;
+      border: 1px solid var(--dh-border-subtle-01);
+      scrollbar-width: thin; scrollbar-color: var(--dh-gray-30) transparent;
+    }
+    .pipe-step {
+      flex: 1; min-width: 130px;
+      background: var(--dh-background); border-right: 1px solid var(--dh-border-subtle-01);
+      padding: var(--dh-spacing-06) var(--dh-spacing-04); text-align: center;
+      transition: background var(--dh-motion-fast-02) var(--dh-ease-productive-standard);
+    }
+    .pipe-step:last-child { border-right: none; }
+    .pipe-step:hover { background: var(--dh-layer-01); }
+    .pipe-icon { width: var(--dh-size-01); height: var(--dh-size-01); margin-bottom: var(--dh-spacing-03); color: var(--dh-text-secondary); display: flex; align-items: center; justify-content: center; margin-left: auto; margin-right: auto; }
+    .pipe-name { font: var(--dh-type-heading-01); color: var(--dh-text-primary); margin-bottom: var(--dh-spacing-02); }
+    .pipe-desc { font: var(--dh-type-caption-01); color: var(--dh-text-secondary); }
+
+    /* Notebook */
+    .notebook-preview { margin-top: var(--dh-spacing-07); border: 1px solid var(--dh-border-subtle-01); overflow: hidden; }
+    .nb-header {
+      display: flex; align-items: center; gap: var(--dh-spacing-03);
+      padding: var(--dh-spacing-03) var(--dh-spacing-05);
+      background: var(--dh-layer-01); border-bottom: 1px solid var(--dh-border-subtle-01);
+    }
+    .nb-header-title { font: var(--dh-type-body-short-01); font-weight: 500; color: var(--dh-text-primary); }
+    .nb-header-badge { margin-left: auto; }
+    .nb-cells { padding: var(--dh-spacing-05); display: flex; flex-direction: column; gap: var(--dh-spacing-04); background: var(--dh-background); }
+    .nb-cell { border: 1px solid var(--dh-border-subtle-01); overflow: hidden; }
+    .nb-cell-header {
+      display: flex; align-items: center; gap: var(--dh-spacing-02);
+      padding: var(--dh-spacing-02) var(--dh-spacing-04);
+      background: var(--dh-layer-01); border-bottom: 1px solid var(--dh-border-subtle-01);
+      font: var(--dh-type-code-01); color: var(--dh-text-secondary);
+    }
+    .nb-cell-type { padding: 1px var(--dh-spacing-02); border-radius: var(--dh-radius-sm); font-weight: 600; font-size: 10px; text-transform: uppercase; }
+    .nb-cell-type.code { background: var(--dh-blue-20);  color: var(--dh-blue-70); }
+    .nb-cell-type.md   { background: var(--dh-gray-20);  color: var(--dh-text-secondary); }
+    .nb-cell-body { padding: var(--dh-spacing-04); font: var(--dh-type-code-02); line-height: 1.8; color: var(--dh-text-primary); background: var(--dh-background); }
+    .nb-cell-body.markdown { font: var(--dh-type-body-long-01); }
+    .syn-kw  { color: var(--dh-blue-70); }
+    .syn-str { color: var(--dh-purple-60); }
+    .syn-num { color: var(--dh-blue-60); }
+    .syn-var { color: var(--dh-teal-60); }
+    .syn-cmt { color: var(--dh-gray-50); }
+
+    /* CTA */
+    .cta-section { text-align: center; padding: var(--dh-layout-07) 0; background: var(--dh-blue-90); }
+    .cta-section h2 { font: var(--dh-type-heading-06); color: var(--dh-white); margin: var(--dh-spacing-05) 0; }
+    .cta-section p  { font: var(--dh-type-body-long-02); color: rgba(255,255,255,.72); max-width: 500px; margin: 0 auto var(--dh-spacing-07); }
+    .cta-actions { display: flex; gap: var(--dh-spacing-03); justify-content: center; flex-wrap: wrap; }
+
+    /* Footer */
+    footer {
+      background: var(--dh-gray-100);
+      border-top: 4px solid var(--dh-blue-60);
+      padding: var(--dh-layout-04) 0;
+    }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--dh-spacing-06); }
+    .footer-brand { display: flex; align-items: center; gap: var(--dh-spacing-04); }
+    .footer-brand img { height: 20px; }
+    .footer-product-name { font: var(--dh-type-body-short-01); color: var(--dh-gray-40); }
+    .footer-links { display: flex; gap: var(--dh-spacing-06); }
+    .footer-links a { font: var(--dh-type-body-short-01); color: var(--dh-gray-40); transition: color var(--dh-motion-fast-02) var(--dh-ease-productive-standard); }
+    .footer-links a:hover { color: var(--dh-white); }
+    .footer-copy { font: var(--dh-type-caption-01); color: var(--dh-gray-50); }
+
+    /* Motion icons */
+    .mi { display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    /* Base: all icon shapes are black */
+    .mi svg { display: block; fill: var(--dh-gray-100); }
+    /* Icons inside buttons inherit button text color */
+    .btn-nav .mi svg,
+    .btn-ghost-inv .mi svg,
+    .btn-primary-inv .mi svg { fill: currentColor; }
+    /* Transparent rect stays transparent */
+    .mi svg #_Transparent_Rectangle_ { fill: none !important; }
+
+    /* ── Duotone: animated/accent parts → brand blue ───────────── */
+    /* magic-wand: sparkles = blue, wand = black */
+    .mi svg .SparkleLeft,
+    .mi svg .SparkleCenter,
+    .mi svg .SparkleRight        { fill: var(--dh-blue-60); }
+    /* saving: spinning circle = blue, disk body = black */
+    .mi svg .SaveCircle          { fill: none !important; stroke: var(--dh-blue-60) !important; }
+    /* dashboard: data bars + circle = blue, frame = black */
+    .mi svg .GraphCircle         { fill: var(--dh-blue-60); }
+    .mi svg .GraphBarLeft,
+    .mi svg .GraphBarRight       { fill: none !important; stroke: var(--dh-blue-60) !important; stroke-width: 2px; }
+    /* recommend: ribbon = blue, badge body = black */
+    .mi svg .RecommendRibbon     { fill: var(--dh-blue-60); }
+    /* loop: arrowhead = blue, shaft = black */
+    .mi svg .LoopArrow           { fill: var(--dh-blue-60); }
+    /* scan-alt: animated bar = blue, corners + image = black */
+    .mi svg .ScanAltBar          { fill: var(--dh-blue-60); }
+    /* bookmark-filled: bottom flap (animated) = blue, top = black */
+    .mi svg .BookmarkFilledBottom { fill: var(--dh-blue-60); }
+    /* layers: bottom layers = blue gradient, top = black */
+    .mi svg .Layers2             { fill: var(--dh-blue-40); }
+    .mi svg .Layers3             { fill: var(--dh-blue-60); }
+    /* connection-signal: signal arcs = blue, tower = black */
+    .mi svg .SignalInner,
+    .mi svg .SignalOuter         { fill: none !important; stroke: var(--dh-blue-60) !important; }
+    /* explore: compass needle = blue, circle = black */
+    .mi svg .ExploreCompass      { fill: var(--dh-blue-60); }
+    /* events: center person = blue, outer people = black */
+    .mi svg .EventsPerson2 path  { fill: var(--dh-blue-60); }
+    /* globe: circle + arc = blue stroke, stand = black */
+    .mi svg .Globe,
+    .mi svg .CircleHalf          { stroke: var(--dh-blue-60) !important; }
+    /* edit: pencil = blue, baseline = black */
+    .mi svg .EditPencil          { fill: var(--dh-blue-60); }
+    /* chat: text lines = blue, bubble = black */
+    .mi svg .ChatLine1,
+    .mi svg .ChatLine2           { fill: var(--dh-blue-60); }
+    /* arrow-right: tip = blue, shaft = black */
+    /* ArrowRightTip: single tone — inherits default fill */
+    /* send-alt: full icon = blue (action accent) */
+    .mi svg .SendAltTop          { fill: var(--dh-blue-60); }
+    /* grid: checkerboard duotone */
+    .mi svg .GridBoxTwo,
+    .mi svg .GridBoxThree        { fill: var(--dh-blue-60); }
+    /* generic helpers for SVG elements without motion class names */
+    .mi svg .mi-blue             { fill: var(--dh-blue-60) !important; }
+    .mi svg .mi-blue-stroke      { stroke: var(--dh-blue-60) !important; fill: none !important; }
+
+    /* Fade-in */
+    .fade-in {
+      opacity: 0; transform: translateY(16px);
+      transition: opacity var(--dh-motion-slow-01) var(--dh-ease-expressive-entrance),
+                  transform var(--dh-motion-slow-01) var(--dh-ease-expressive-entrance);
+    }
+    .fade-in.visible { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <img src="./uploads/logo.datHere.primary.dark_.bg_ (1).png" alt="datHere" />
+      <div class="nav-divider"></div>
+      <span class="nav-product">Data Concierge</span>
+    </div>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#data-sources">Data Sources</a>
+      <a href="#use-cases">Use Cases</a>
+      <a href="#pipeline">Architecture</a>
+      <a href="#get-started" class="btn-nav"><span class="mi"><svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" class="ArrowRightMotion"><path class="ArrowRightTip" d="M18,6l-1.4,1.4l7.6,7.6h-7.6v2h7.6l-7.6,7.6L18,26l10-10L18,6z"/><path d="M24.2,15H4v2h20.2V15z"/></svg></span> Get Started</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-eyebrow">
+          <span class="tag-on-dark-blue">AI-Powered</span>
+          <span class="tag-on-dark">Federal Data</span>
+        </div>
+        <h1>Ask Any Question About <span class="hero-accent">Federal Statistical Data</span></h1>
+        <p>Data Concierge turns plain-English questions into citation-backed answers with reproducible Jupyter notebooks — pulling live data from BLS, Census, FRED, Data Commons, and more.</p>
+        <div class="hero-actions">
+          <a href="#get-started" class="btn-primary-inv"><span class="mi"><svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" class="ArrowRightMotion"><path class="ArrowRightTip" d="M18,6l-1.4,1.4l7.6,7.6h-7.6v2h7.6l-7.6,7.6L18,26l10-10L18,6z"/><path d="M24.2,15H4v2h20.2V15z"/></svg></span> Request Access</a>
+          <a href="#how-it-works" class="btn-ghost-inv"><span class="mi"><svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" class="ArrowRightMotion"><path class="ArrowRightTip" d="M18,6l-1.4,1.4l7.6,7.6h-7.6v2h7.6l-7.6,7.6L18,26l10-10L18,6z"/><path d="M24.2,15H4v2h20.2V15z"/></svg></span> See How It Works</a>
+        </div>
+      </div>
+
+      <div class="hero-terminal">
+        <div class="terminal-header">
+          <div class="terminal-dot red"></div>
+          <div class="terminal-dot yellow"></div>
+          <div class="terminal-dot green"></div>
+          <span class="terminal-title">data-concierge · live query</span>
+        </div>
+        <div class="terminal-body">
+          <div><span class="t-prompt">user &gt;</span> <span class="t-query">What is the unemployment rate in Texas compared to California over the last 5 years?</span></div>
+          <br>
+          <div><span class="t-comment">▸ Intent: </span><span class="t-string">COMPARISON · Tier 2</span></div>
+          <div><span class="t-comment">▸ Entities: </span><span class="t-val">Texas, California</span><span class="t-comment"> / </span><span class="t-val">UnemploymentRate</span></div>
+          <div><span class="t-comment">▸ Sources: </span><span class="t-key">BLS</span><span class="t-comment">, </span><span class="t-key">Data Commons</span></div>
+          <div class="t-bar" style="width:65%"></div>
+          <br>
+          <div><span class="t-comment">▸ Texas 2024:&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="t-num">4.1%</span></div>
+          <div><span class="t-comment">▸ California 2024: </span><span class="t-num">5.3%</span></div>
+          <div><span class="t-comment">▸ Confidence: </span><span class="t-val">HIGH (0.92)</span></div>
+          <br>
+          <div><span class="t-comment">▸ Notebook: </span><span class="t-string">unemployment_tx_ca.ipynb</span> <span class="t-val">✓</span></div>
+          <div><span class="t-comment">▸ Citations: </span><span class="t-num">3</span><span class="t-comment"> federal sources cited</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-in">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Federal Data Sources</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">60+</div>
+        <div class="stat-label">FRED Economic Series</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Intent Types Classified</div>
+      </div>
+      <div class="stat-item fade-in">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Reproducible Notebooks</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section class="how-it-works" id="how-it-works">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="section-eyebrow"><span class="tag-cyan">Process</span></div>
+      <h2 class="section-title">From Question to Reproducible Research</h2>
+      <p class="section-desc">Seven intelligent agents work in sequence to classify your intent, retrieve authoritative data, compute statistics, and deliver a citable notebook.</p>
+    </div>
+    <div class="steps container-sm">
+      <div class="step fade-in">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Intent Classification</h3>
+          <p>Your natural-language query is classified into one of six intent types — factual lookup, comparison, trend analysis, dataset discovery, methodology question, or data linking — and routed to the appropriate processing tier (1, 2, or 3).</p>
+          <div class="step-tags">
+            <span class="step-tag">FACTUAL_LOOKUP</span>
+            <span class="step-tag">COMPARISON</span>
+            <span class="step-tag">TREND_ANALYSIS</span>
+            <span class="step-tag">DATASET_DISCOVERY</span>
+            <span class="step-tag">METHODOLOGY_QUESTION</span>
+            <span class="step-tag">DATA_LINKING</span>
+          </div>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Entity Extraction</h3>
+          <p>Places are resolved to Data Commons DCIDs, variables are mapped to authoritative identifiers (BLS series, Census variables, FRED codes), and time periods are normalized. Geographic coverage spans all US states, counties, and major cities.</p>
+          <div class="step-tags">
+            <span class="step-tag">geoId/48 → Texas</span>
+            <span class="step-tag">UnemploymentRate_Person</span>
+            <span class="step-tag">2019–2024</span>
+          </div>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Multi-Source Data Retrieval</h3>
+          <p>A prioritized retrieval strategy first queries Data Commons, then falls back to vector similarity search, then directly calls BLS, Census, BEA, or FRED APIs. Results are deduplicated and cached with per-source TTLs.</p>
+          <div class="step-tags">
+            <span class="step-tag">Data Commons v2</span>
+            <span class="step-tag">Qdrant / Pinecone</span>
+            <span class="step-tag">Redis TTL Cache</span>
+          </div>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <h3>Statistical Computation</h3>
+          <p>The Stats Computer runs the appropriate calculation for each intent type: direct lookups, time-series trend analysis, cross-sectional comparisons, or statistical inference — each with its own reliability score.</p>
+          <div class="step-tags">
+            <span class="step-tag">direct_lookup: 1.0</span>
+            <span class="step-tag">trend_analysis: 0.85</span>
+            <span class="step-tag">statistical_inference: 0.70</span>
+          </div>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <h3>Visualization Generation</h3>
+          <p>Vega-Lite chart specifications are generated automatically — time-series line charts, bar comparisons, geographic choropleth maps — and embedded directly in the output notebook.</p>
+          <div class="step-tags">
+            <span class="step-tag">Vega-Lite</span>
+            <span class="step-tag">Time Series</span>
+            <span class="step-tag">Choropleth</span>
+          </div>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">6</div>
+        <div class="step-content">
+          <h3>Citation Building</h3>
+          <p>Every data point is traced back to its authoritative source. Citations are formatted in both federal and academic styles with publication dates, dataset names, API endpoints, and access timestamps.</p>
+          <div class="step-tags">
+            <span class="step-tag">Federal Format</span>
+            <span class="step-tag">Academic Format</span>
+            <span class="step-tag">API Attribution</span>
+          </div>
+        </div>
+      </div>
+      <div class="step fade-in">
+        <div class="step-num">7</div>
+        <div class="step-content">
+          <h3>Reproducible Notebook</h3>
+          <p>Every query generates a self-contained, Colab-ready Jupyter notebook. The full execution trace — every API call, every computation — is recorded so your analysis can be reproduced, modified, and peer-reviewed.</p>
+          <div class="step-tags">
+            <span class="step-tag">.ipynb</span>
+            <span class="step-tag">Colab-Ready</span>
+            <span class="step-tag">execution_trace</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="section-eyebrow"><span class="tag-blue">Capabilities</span></div>
+      <h2 class="section-title">Built for Rigorous Data Research</h2>
+      <p class="section-desc">Every feature is designed around a core principle: authoritative data, traceable methods, and reproducible results.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="MagicMotion"><path class="Wand" d="M29.4141,24,12,6.5859a2.0476,2.0476,0,0,0-2.8281,0l-2.586,2.586a2.0021,2.0021,0,0,0,0,2.8281L23.999,29.4141a2.0024,2.0024,0,0,0,2.8281,0l2.587-2.5865a1.9993,1.9993,0,0,0,0-2.8281ZM8,10.5859,10.5859,8l5,5-2.5866,2.5869-5-5ZM25.4131,28l-11-10.999L17,14.4141l11,11Z"/><g class="SparkleLeftContainer"><path class="SparkleLeft" d="M2.586 14.586H5.414V17.414H2.586z"/></g><path class="SparkleCenter" d="M2.586 2.586H5.414V5.414H2.586z"/><g class="SparkleRightContainer"><path class="SparkleRight" d="M14.586 2.586H17.414V5.414H14.586z"/></g></svg></span></div>
+        <h3>Multi-Agent AI Orchestration</h3>
+        <p>LangGraph-powered supervisor coordinates seven specialized agents — each expert in a different phase of the data pipeline. Claude Sonnet handles all LLM tasks including entity extraction and CKAN function calling.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path d="M16,26h-4v-8h4v-2h-4c-1.1,0-2,0.9-2,2v8H6V6h4v4c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V6.4l4,4V16h2v-6c0-0.3-0.1-0.5-0.3-0.7l-5-5C22.5,4.1,22.3,4,22,4H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h10V26z M12,6h8v4h-8V6z"/><circle class="SaveCircle" cx="23" cy="23" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></div>
+        <h3>Reproducible Jupyter Notebooks</h3>
+        <p>Every answer ships as a Colab-ready .ipynb file. The full execution trace — API calls, computations, chart specs — is baked in so anyone can reproduce, verify, or extend your analysis.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="ScanAltMotion"><path class="ScanAltTopRight" d="M30,10h-2V4h-6V2h8V10z"/><path class="ScanAltTopLeft" d="M4,10H2V2h8v2H4V10z"/><path class="ScanAltBottomRight" d="M30,30h-8v-2h6v-6h2V30z"/><path class="ScanAltBottomLeft" d="M10,30H2v-8h2v6h6V30z"/><path class="ScanAltBar" d="M1.7,14.7h28v2h-28V14.7z"/><path class="ScanAltImage" d="M22,24H10c-1.1,0-2-0.9-2-2v-3h2v3h12v-3h2v3C24,23.1,23.1,24,22,24z M24,13h-2v-3H10v3H8v-3c0-1.1,0.9-2,2-2h12c1.1,0,2,0.9,2,2V13z"/></svg></span></div>
+        <h3>Semantic Dataset Discovery</h3>
+        <p>Can't find the right dataset? The CKAN agent uses Claude function calling + Pinecone semantic vector search to find datasets across thousands of federal open-data catalogs.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path class="GraphCircle" d="M7,21a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/><path class="GraphBarLeft" d="M21 16v10"/><path class="GraphBarRight" d="M25 16v10"/><path d="M28,2H4C2.9,2,2,2.9,2,4v24c0,1.1,0.9,2,2,2h24c1.1,0,2-0.9,2-2V4C30,2.9,29.1,2,28,2z M28,11H14V4h14V11z M12,4v7H4V4H12z M4,28V13h24v15H4z"/></svg></span></div>
+        <h3>Automatic Visualizations</h3>
+        <p>Vega-Lite chart specs are generated automatically for every result — time-series trends, geographic comparisons, distribution plots — and rendered directly in the output notebook.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="RecommendMotion"><path class="RecommendRibbon" d="M22,19v10l-6-4l-6,4V19c0.7,0,1.3,0,2,0v6.3l2.9-1.9l1.1-0.7l1.1,0.7l2.9,1.9V19C20.7,19,21.3,19,22,19z"/><path class="RecommendBadge" d="M12,18c2.5,1.3,5.5,1.3,8,0v4.2c0.6,0,1.3,0,2,0v-5.6c3.7-3.3,4-9,0.7-12.7C21,2.1,18.5,1,16,1c-5,0-9,4-9,9c0,2.5,1.1,5,3,6.7v5.6c0.5,0,1.2,0,2,0V18z M11.1,5c2.8-2.7,7.2-2.6,9.9,0.1c1.3,1.3,2,3.1,2,4.9c0,1.9-0.8,3.7-2.1,5c-2.8,2.7-7.2,2.6-9.9-0.1C8.3,12.1,8.3,7.7,11.1,5z"/></svg></span></div>
+        <h3>Federal-Grade Citations</h3>
+        <p>Every data point is traceable. Citations include the source agency, dataset name, API endpoint, access date, and series identifier — formatted in both federal and academic styles.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="LoopMotion"><path class="LoopArrow" d="M21.6,19.4L24,22h-5v2h5l-2.4,2.6L23,28l5-5l-5-5L21.6,19.4z"/><path class="Loop" d="M24,22h-5v2h5V22z M11,6c-5,0-9,4-9,9c0,1.8,0.5,3.5,1.5,5l1.7-1.1C3,15.7,3.9,11.3,7.1,9.2s7.6-1.3,9.7,1.9s1.3,7.6-1.9,9.7C13.7,21.6,12.4,22,11,22H0v2h11c5,0,9-4,9-9S16,6,11,6z"/></svg></span></div>
+        <h3>Intelligent Caching</h3>
+        <p>Redis-backed cache with per-source TTLs (BLS: 30 days, Census: 90 days, NCSES: 365 days). Version-aware keys ensure cached data is never stale after API updates.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path class="mi-blue" d="M16,2l-4.6,9.2L1.3,12.7l7.4,7.2L6.9,30l9.1-4.8l9.1,4.8l-1.7-10.1l7.4-7.2l-10.2-1.5L16,2z"/></svg></span></div>
+        <h3>Confidence Scoring</h3>
+        <p>A five-factor weighted confidence model grades every answer: query interpretation, source authority, retrieval match quality, data recency, and computation reliability. Transparent, auditable scores.</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="LayersMotion"><path class="Layers1" d="M16,18c-0.2,0-0.3,0-0.5-0.1l-13-7C2,10.6,1.9,10,2.1,9.5c0.1-0.2,0.2-0.3,0.4-0.4l13-7c0.3-0.2,0.7-0.2,0.9,0l13,7c0.5,0.3,0.7,0.9,0.4,1.4c-0.1,0.2-0.2,0.3-0.4,0.4l-13,7C16.3,18,16.2,18,16,18z M5.1,10L16,15.9L26.9,10L16,4.1L5.1,10z"/><path class="Layers2" d="M16,24c-0.2,0-0.3,0-0.5-0.1l-13-7l0.9-1.8L16,21.9l12.5-6.7l0.9,1.8l-13,7C16.3,24,16.2,24,16,24z"/><path class="Layers3" d="M16,30c-0.2,0-0.3,0-0.5-0.1l-13-7l0.9-1.8L16,27.9l12.5-6.7l0.9,1.8l-13,7C16.3,30,16.2,30,16,30z"/></svg></span></div>
+        <h3>Tiered Processing</h3>
+        <p>Simple factual lookups are fully automated (Tier 1). Comparisons and trend analyses run a multi-step pipeline (Tier 2). Complex or low-confidence queries escalate to human review (Tier 3).</p>
+      </div>
+      <div class="feature-card fade-in">
+        <div class="feature-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><rect class="mi-blue" x="14" y="19" width="4" height="2"/><path d="M6,18v10c0,1.1,0.9,2,2,2h14v-2H8V18H6z"/><path d="M24,18v10H10v2h14c1.1,0,2-0.9,2-2V18H24z"/><path d="M6,16h20V2H6 M24,14H8v-4h16V14z M8,8V4h16v4H8z"/><polygon class="mi-blue" points="22,16 8,16 8,20 6,20 6,14 22,14"/><polygon class="mi-blue" points="10,16 24,16 24,20 26,20 26,14 10,14"/></svg></span></div>
+        <h3>Session Memory</h3>
+        <p>Conversational sessions keep the last 10 queries in context, enabling follow-up questions and iterative refinement without repeating yourself. Expiry after 30 minutes of inactivity.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SOURCES -->
+<section class="sources-section" id="data-sources">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="section-eyebrow"><span class="tag-green">Data Sources</span></div>
+      <h2 class="section-title">Authoritative Federal Data at Your Fingertips</h2>
+      <p class="section-desc">Direct API integrations with the most trusted sources in federal statistical data — no scraping, no unofficial mirrors.</p>
+    </div>
+    <div class="sources-grid">
+      <div class="source-card fade-in">
+        <div class="source-header">
+          <div class="source-logo"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><rect class="Tower" width="2" height="18" x="15" y="12"/><rect class="TowerTwo" width="2" height="18" x="15" y="12"/><g class="SignalInnerGroup"><path class="SignalInner" fill="none" stroke="currentColor" stroke-width="2" d="M12,17.5c-1.2-1.1-2-2.7-2-4.5c0-1.8,0.8-3.4,2-4.5"/><path class="SignalInner" fill="none" stroke="currentColor" stroke-width="2" d="M20,8.5c1.2,1.1,2,2.7,2,4.5c0,1.8-0.8,3.4-2,4.5"/></g><g class="SignalOuterGroup"><path class="SignalOuter" fill="none" stroke="currentColor" stroke-width="2" d="M9,21.4c-2.4-2-4-5.1-4-8.4c0-3.4,1.5-6.4,4-8.4"/><path class="SignalOuter" fill="none" stroke="currentColor" stroke-width="2" d="M23,4.6c2.4,2,4,5.1,4,8.4s-1.5,6.4-4,8.4"/></g></svg></span></div>
+          <div>
+            <div class="source-name">Data Commons</div>
+            <span class="tag-cyan" style="margin-top:4px">Google</span>
+          </div>
+        </div>
+        <div class="source-desc">Google's unified knowledge graph aggregating statistical data from 100+ government and academic sources. Primary source for geo-resolved queries via Data Commons DCID system.</div>
+        <div class="source-meta">
+          <span class="tag-cyan">v2 API</span>
+          <span class="tag-cyan">7-day TTL</span>
+        </div>
+      </div>
+      <div class="source-card fade-in">
+        <div class="source-header">
+          <div class="source-logo"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="ExploreMotion"><path class="ExploreCompass" d="M22.7,9.3c-0.3-0.3-0.7-0.4-1-0.2l-9,3c-0.3,0.1-0.5,0.3-0.6,0.6l-3,9c-0.2,0.5,0.1,1.1,0.6,1.3c0.2,0.1,0.4,0.1,0.6,0l9-3c0.3-0.1,0.5-0.3,0.6-0.6l3-9C23.1,10,23,9.6,22.7,9.3z M11.6,20.4l2.2-6.6l4.4,4.4L11.6,20.4z"/><path class="ExploreCircle" d="M16,30C8.3,30,2,23.7,2,16S8.3,2,16,2s14,6.3,14,14C30,23.7,23.7,30,16,30z M16,4C9.4,4,4,9.4,4,16s5.4,12,12,12s12-5.4,12-12C28,9.4,22.6,4,16,4z"/></svg></span></div>
+          <div>
+            <div class="source-name">Bureau of Labor Statistics</div>
+            <span class="tag-blue" style="margin-top:4px">BLS</span>
+          </div>
+        </div>
+        <div class="source-desc">Official US employment, wages, inflation (CPI), and productivity statistics. Timeseries API with 500 requests/day with API key. Primary source for labor market queries.</div>
+        <div class="source-meta">
+          <span class="tag-blue">Timeseries</span>
+          <span class="tag-blue">30-day TTL</span>
+        </div>
+      </div>
+      <div class="source-card fade-in">
+        <div class="source-header">
+          <div class="source-logo"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="EventsMotion"><g class="EventsPerson"><path d="M26,14H24v2h2a3.0033,3.0033,0,0,1,3,3v4h2V19A5.0058,5.0058,0,0,0,26,14Z"/><path d="M24,4a3,3,0,1,1-3,3,3,3,0,0,1,3-3m0-2a5,5,0,1,0,5,5A5,5,0,0,0,24,2Z"/></g><g class="EventsPerson2"><path d="M23,30H21V28a3.0033,3.0033,0,0,0-3-3H14a3.0033,3.0033,0,0,0-3,3v2H9V28a5.0059,5.0059,0,0,1,5-5h4a5.0059,5.0059,0,0,1,5,5Z"/><path d="M16,13a3,3,0,1,1-3,3,3,3,0,0,1,3-3m0-2a5,5,0,1,0,5,5A5,5,0,0,0,16,11Z"/></g><g class="EventsPerson3"><path d="M8,14H6a5.0059,5.0059,0,0,0-5,5v4H3V19a3.0033,3.0033,0,0,1,3-3H8Z"/><path d="M8,4A3,3,0,1,1,5,7,3,3,0,0,1,8,4M8,2a5,5,0,1,0,5,5A5,5,0,0,0,8,2Z"/></g></svg></span></div>
+          <div>
+            <div class="source-name">Census Bureau</div>
+            <span class="tag-green" style="margin-top:4px">ACS · Decennial</span>
+          </div>
+        </div>
+        <div class="source-desc">Population, demographics, housing, and economic data from the American Community Survey and Decennial Census. Sub-county geographic granularity available.</div>
+        <div class="source-meta">
+          <span class="tag-green">ACS</span>
+          <span class="tag-green">90-day TTL</span>
+        </div>
+      </div>
+      <div class="source-card fade-in">
+        <div class="source-header">
+          <div class="source-logo"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path class="GraphCircle" d="M7,21a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/><path class="GraphBarLeft" d="M21 16v10"/><path class="GraphBarRight" d="M25 16v10"/><path d="M28,2H4C2.9,2,2,2.9,2,4v24c0,1.1,0.9,2,2,2h24c1.1,0,2-0.9,2-2V4C30,2.9,29.1,2,28,2z M28,11H14V4h14V11z M12,4v7H4V4H12z M4,28V13h24v15H4z"/></svg></span></div>
+          <div>
+            <div class="source-name">FRED</div>
+            <span class="tag-yellow" style="margin-top:4px">St. Louis Fed</span>
+          </div>
+        </div>
+        <div class="source-desc">Federal Reserve Economic Data — 800,000+ economic time series. 60+ pre-mapped series IDs covering GDP, interest rates, money supply, financial conditions, and more.</div>
+        <div class="source-meta">
+          <span class="tag-yellow">60+ Series</span>
+          <span class="tag-yellow">Real-time</span>
+        </div>
+      </div>
+      <div class="source-card fade-in">
+        <div class="source-header">
+          <div class="source-logo"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path class="GlobeBase" d="M28,11c0-3.7-1.5-7.3-4.1-9.9l-1.4,1.4c4.7,4.7,4.7,12.3,0,17c-4.7,4.7-12.3,4.7-17,0l0,0l-1.4,1.4C6.7,23.5,10.3,25,14,25v3h-4v2h10v-2h-4v-3.2C22.9,23.8,28,18,28,11z"/><path class="CircleHalf" d="M14,19c-4.4,0-8-3.6-8-8s3.6-8,8-8" fill="none" stroke="currentColor" stroke-width="2"/><circle class="Globe" cx="14" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></div>
+          <div>
+            <div class="source-name">Bureau of Economic Analysis</div>
+            <span class="tag-purple" style="margin-top:4px">BEA</span>
+          </div>
+        </div>
+        <div class="source-desc">GDP, national income, industry accounts, and international trade statistics from the BEA. Provides the authoritative measurement of the US economy.</div>
+        <div class="source-meta">
+          <span class="tag-purple">GDP · NIPA</span>
+          <span class="tag-purple">90-day TTL</span>
+        </div>
+      </div>
+      <div class="source-card fade-in">
+        <div class="source-header">
+          <div class="source-logo"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><rect class="mi-blue" x="14" y="19" width="4" height="2"/><path d="M6,18v10c0,1.1,0.9,2,2,2h14v-2H8V18H6z"/><path d="M24,18v10H10v2h14c1.1,0,2-0.9,2-2V18H24z"/><path d="M6,16h20V2H6 M24,14H8v-4h16V14z M8,8V4h16v4H8z"/><polygon class="mi-blue" points="22,16 8,16 8,20 6,20 6,14 22,14"/><polygon class="mi-blue" points="10,16 24,16 24,20 26,20 26,14 10,14"/></svg></span></div>
+          <div>
+            <div class="source-name">CKAN Open Data</div>
+            <span class="tag-red" style="margin-top:4px">data.gov</span>
+          </div>
+        </div>
+        <div class="source-desc">LLM-driven semantic search across thousands of federal open-data catalogs (data.gov and agency portals). Claude function calling + Pinecone vector index for dataset discovery.</div>
+        <div class="source-meta">
+          <span class="tag-red">Semantic Search</span>
+          <span class="tag-red">Pinecone</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-cases-section" id="use-cases">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="section-eyebrow"><span class="tag-purple">Use Cases</span></div>
+      <h2 class="section-title">Who Uses Data Concierge</h2>
+      <p class="section-desc">From policy research to journalism, any field that depends on authoritative federal data benefits from instant, citable answers.</p>
+    </div>
+    <div class="use-cases-grid">
+      <div class="use-case-card fade-in">
+        <div class="use-case-icon"><span class="mi"><svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor"><path class="GlobeBase" d="M28,11c0-3.7-1.5-7.3-4.1-9.9l-1.4,1.4c4.7,4.7,4.7,12.3,0,17c-4.7,4.7-12.3,4.7-17,0l0,0l-1.4,1.4C6.7,23.5,10.3,25,14,25v3h-4v2h10v-2h-4v-3.2C22.9,23.8,28,18,28,11z"/><path class="CircleHalf" d="M14,19c-4.4,0-8-3.6-8-8s3.6-8,8-8" fill="none" stroke="currentColor" stroke-width="2"/><circle class="Globe" cx="14" cy="11" r="8" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></div>
+        <h3>Policy Research</h3>
+        <p>Quickly synthesize economic indicators across jurisdictions, compare program outcomes, and build the data foundation for policy briefs — with every number traceable to an authoritative federal source.</p>
+        <div class="use-case-examples">
+          <div class="use-case-example">Compare median household income across all 50 states in 2023</div>
+          <div class="use-case-example">How has the labor force participation rate changed since 2000?</div>
+          <div class="use-case-example">What are the poverty rates in rural vs urban counties?</div>
+        </div>
+      </div>
+      <div class="use-case-card fade-in">
+        <div class="use-case-icon"><span class="mi"><svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" class="EditMotion"><rect x="2" y="26" width="28" height="2"/><path class="EditPencil" d="M25.4,9c0.8-0.8,0.8-2,0-2.8c0,0,0,0,0,0l-3.6-3.6c-0.8-0.8-2-0.8-2.8,0c0,0,0,0,0,0l-15,15V24h6.4L25.4,9z M20.4,4L24,7.6l-3,3L17.4,7L20.4,4z M6,22v-3.6l10-10l3.6,3.6l-10,10H6z"/></svg></span></div>
+        <h3>Data Journalism</h3>
+        <p>Get shareable, reproducible notebooks behind every statistic you publish. Readers and editors can verify every number by opening the notebook — no more "according to data."</p>
+        <div class="use-case-examples">
+          <div class="use-case-example">What is the unemployment trend in the Rust Belt since 2010?</div>
+          <div class="use-case-example">How does inflation compare to wage growth over the last decade?</div>
+          <div class="use-case-example">Find datasets on housing affordability by metro area</div>
+        </div>
+      </div>
+      <div class="use-case-card fade-in">
+        <div class="use-case-icon"><span class="mi"><svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" class="BookmarkFilledMotion"><path class="BookmarkFilledBottom" d="M26,7v21l-10-5.1L6,28V7H26z"/><path class="BookmarkFilledTop" d="M26,4v12H6V4c0-1.1,0.9-2,2-2h16C25.1,2,26,2.9,26,4z"/></svg></span></div>
+        <h3>Academic Research</h3>
+        <p>Generate properly cited datasets and methodology explanations for papers and dissertations. The execution trace documents every step of data acquisition and transformation for peer review.</p>
+        <div class="use-case-examples">
+          <div class="use-case-example">How is the Consumer Price Index measured?</div>
+          <div class="use-case-example">Find longitudinal datasets linking education and income</div>
+          <div class="use-case-example">What is the GDP growth trend for the Southeast region?</div>
+        </div>
+      </div>
+      <div class="use-case-card fade-in">
+        <div class="use-case-icon"><span class="mi"><svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" class="ExploreMotion"><path class="ExploreCompass" d="M22.7,9.3c-0.3-0.3-0.7-0.4-1-0.2l-9,3c-0.3,0.1-0.5,0.3-0.6,0.6l-3,9c-0.2,0.5,0.1,1.1,0.6,1.3c0.2,0.1,0.4,0.1,0.6,0l9-3c0.3-0.1,0.5-0.3,0.6-0.6l3-9C23.1,10,23,9.6,22.7,9.3z M11.6,20.4l2.2-6.6l4.4,4.4L11.6,20.4z"/><path class="ExploreCircle" d="M16,30C8.3,30,2,23.7,2,16S8.3,2,16,2s14,6.3,14,14C30,23.7,23.7,30,16,30z M16,4C9.4,4,4,9.4,4,16s5.4,12,12,12s12-5.4,12-12C28,9.4,22.6,4,16,4z"/></svg></span></div>
+        <h3>Business Intelligence</h3>
+        <p>Contextualize your company's performance against macroeconomic benchmarks, research expansion markets, and build data-backed forecasts anchored to official government statistics.</p>
+        <div class="use-case-examples">
+          <div class="use-case-example">What is the job growth rate in the healthcare sector?</div>
+          <div class="use-case-example">Compare construction spending trends by state</div>
+          <div class="use-case-example">How has e-commerce as a share of retail changed since 2019?</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONFIDENCE SCORING -->
+<section class="confidence-section">
+  <div class="container">
+    <div class="confidence-card fade-in">
+      <div>
+        <div class="conf-eyebrow"><span class="tag-yellow">Transparency</span></div>
+        <h2 class="conf-title">Five-Factor Confidence Scoring</h2>
+        <p class="conf-desc">Every answer comes with a transparent, auditable confidence score — not a black-box percentage. Five independent factors are weighted and combined so you know exactly how much to trust each result.</p>
+        <div class="conf-level-list">
+          <span class="tag-green">HIGH ≥ 0.85</span>
+          <span class="tag-blue">MEDIUM ≥ 0.70</span>
+          <span class="tag-yellow">LOW ≥ 0.50</span>
+          <span class="tag-red">VERY_LOW &lt; 0.50</span>
+        </div>
+      </div>
+      <div>
+        <div class="conf-factors">
+          <div class="conf-factor">
+            <div class="conf-factor-header">
+              <span class="conf-factor-name">Query Interpretation</span>
+              <span class="conf-factor-weight">25%</span>
+            </div>
+            <div class="conf-bar-track"><div class="conf-bar-fill" style="width:25%"></div></div>
+          </div>
+          <div class="conf-factor">
+            <div class="conf-factor-header">
+              <span class="conf-factor-name">Source Authority</span>
+              <span class="conf-factor-weight">25%</span>
+            </div>
+            <div class="conf-bar-track"><div class="conf-bar-fill" style="width:25%"></div></div>
+          </div>
+          <div class="conf-factor">
+            <div class="conf-factor-header">
+              <span class="conf-factor-name">Retrieval Match Quality</span>
+              <span class="conf-factor-weight">20%</span>
+            </div>
+            <div class="conf-bar-track"><div class="conf-bar-fill" style="width:20%"></div></div>
+          </div>
+          <div class="conf-factor">
+            <div class="conf-factor-header">
+              <span class="conf-factor-name">Data Recency</span>
+              <span class="conf-factor-weight">15%</span>
+            </div>
+            <div class="conf-bar-track"><div class="conf-bar-fill" style="width:15%"></div></div>
+          </div>
+          <div class="conf-factor">
+            <div class="conf-factor-header">
+              <span class="conf-factor-name">Computation Reliability</span>
+              <span class="conf-factor-weight">15%</span>
+            </div>
+            <div class="conf-bar-track"><div class="conf-bar-fill" style="width:15%"></div></div>
+          </div>
+        </div>
+        <p class="conf-note">Answers below 0.50 confidence with 2+ retrieval attempts automatically escalate to human review.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="pipeline-section" id="pipeline">
+  <div class="container">
+    <div class="section-header center fade-in">
+      <div class="section-eyebrow"><span class="tag-blue">Architecture</span></div>
+      <h2 class="section-title">Seven Agents, One Pipeline</h2>
+      <p class="section-desc">LangGraph supervisor pattern — each agent is a specialist, coordinated by an orchestrator that aggregates results into a single coherent response.</p>
+    </div>
+    <div class="pipeline-visual-wrap">
+      <div class="pipe-progress"><div class="pipe-progress-fill" id="pipeProgressFill"></div></div>
+    <div class="pipeline-visual fade-in">
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="ChatMotion"><path class="ChatLine1" d="M8,10h16v2H8V10z"/><path class="ChatLine2" d="M8,16h10v2H8V16z"/><path class="ChatBubble" d="M17.7,30L16,29l4-7h6c1.1,0,2-0.9,2-2V8c0-1.1-0.9-2-2-2H6C4.9,6,4,6.9,4,8v12c0,1.1,0.9,2,2,2h9v2H6c-2.2,0-4-1.8-4-4V8c0-2.2,1.8-4,4-4h20c2.2,0,4,1.8,4,4v12c0,2.2-1.8,4-4,4h-4.8L17.7,30z"/></svg></span></div>
+        <div class="pipe-name">Intent Classifier</div>
+        <div class="pipe-desc">6 intent types, 3 tiers</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" class="SearchMotion"><circle class="Search" fill="none" style="stroke:var(--dh-gray-100)" stroke-width="2" cx="13" cy="13" r="10"/><line class="Search mi-blue-stroke" stroke-width="2" x1="20.4" y1="20.4" x2="28.3" y2="28.3"/></svg></span></div>
+        <div class="pipe-name">Query Parser</div>
+        <div class="pipe-desc">DCID mapping, time normalization</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="ScanAltMotion"><path class="ScanAltTopRight" d="M30,10h-2V4h-6V2h8V10z"/><path class="ScanAltTopLeft" d="M4,10H2V2h8v2H4V10z"/><path class="ScanAltBottomRight" d="M30,30h-8v-2h6v-6h2V30z"/><path class="ScanAltBottomLeft" d="M10,30H2v-8h2v6h6V30z"/><path class="ScanAltBar" d="M1.7,14.7h28v2h-28V14.7z"/><path class="ScanAltImage" d="M22,24H10c-1.1,0-2-0.9-2-2v-3h2v3h12v-3h2v3C24,23.1,23.1,24,22,24z M24,13h-2v-3H10v3H8v-3c0-1.1,0.9-2,2-2h12c1.1,0,2,0.9,2,2V13z"/></svg></span></div>
+        <div class="pipe-name">Data Finder</div>
+        <div class="pipe-desc">DC → Vector → Direct APIs</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path class="GraphCircle" d="M7,21a4,4 0 1,0 8,0a4,4 0 1,0 -8,0"/><path class="GraphBarLeft" d="M21 16v10"/><path class="GraphBarRight" d="M25 16v10"/><path d="M28,2H4C2.9,2,2,2.9,2,4v24c0,1.1,0.9,2,2,2h24c1.1,0,2-0.9,2-2V4C30,2.9,29.1,2,28,2z M28,11H14V4h14V11z M12,4v7H4V4H12z M4,28V13h24v15H4z"/></svg></span></div>
+        <div class="pipe-name">Stats Computer</div>
+        <div class="pipe-desc">Lookup, trend, inference</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path class="GridBoxOne" d="M12,4 L6,4 C4.8954305,4 4,4.8954305 4,6 L4,12 C4,13.1045695 4.8954305,14 6,14 L12,14 C13.1045695,14 14,13.1045695 14,12 L14,6 C14,4.8954305 13.1045695,4 12,4 Z M12,12 L6,12 L6,6 L12,6 L12,12 Z"/><path class="GridBoxTwo" d="M26,4 L20,4 C18.8954305,4 18,4.8954305 18,6 L18,12 C18,13.1045695 18.8954305,14 20,14 L26,14 C27.1045695,14 28,13.1045695 28,12 L28,6 C28,4.8954305 27.1045695,4 26,4 Z M26,12 L20,12 L20,6 L26,6 L26,12 Z"/><path class="GridBoxThree" d="M12,18 L6,18 C4.8954305,18 4,18.8954305 4,20 L4,26 C4,27.1045695 4.8954305,28 6,28 L12,28 C13.1045695,28 14,27.1045695 14,26 L14,20 C14,18.8954305 13.1045695,18 12,18 Z M12,26 L6,26 L6,20 L12,20 L12,26 Z"/><path class="GridBoxFour" d="M26,18 L20,18 C18.8954305,18 18,18.8954305 18,20 L18,26 C18,27.1045695 18.8954305,28 20,28 L26,28 C27.1045695,28 28,27.1045695 28,26 L28,20 C28,18.8954305 27.1045695,18 26,18 Z M26,26 L20,26 L20,20 L26,20 L26,26 Z"/></svg></span></div>
+        <div class="pipe-name">Viz Builder</div>
+        <div class="pipe-desc">Vega-Lite specs</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor" class="RecommendMotion"><path class="RecommendRibbon" d="M22,19v10l-6-4l-6,4V19c0.7,0,1.3,0,2,0v6.3l2.9-1.9l1.1-0.7l1.1,0.7l2.9,1.9V19C20.7,19,21.3,19,22,19z"/><path class="RecommendBadge" d="M12,18c2.5,1.3,5.5,1.3,8,0v4.2c0.6,0,1.3,0,2,0v-5.6c3.7-3.3,4-9,0.7-12.7C21,2.1,18.5,1,16,1c-5,0-9,4-9,9c0,2.5,1.1,5,3,6.7v5.6c0.5,0,1.2,0,2,0V18z M11.1,5c2.8-2.7,7.2-2.6,9.9,0.1c1.3,1.3,2,3.1,2,4.9c0,1.9-0.8,3.7-2.1,5c-2.8,2.7-7.2,2.6-9.9-0.1C8.3,12.1,8.3,7.7,11.1,5z"/></svg></span></div>
+        <div class="pipe-name">Citation Builder</div>
+        <div class="pipe-desc">Federal + academic</div>
+      </div>
+      <div class="pipe-step">
+        <div class="pipe-icon"><span class="mi"><svg viewBox="0 0 32 32" width="24" height="24" fill="currentColor"><path d="M16,26h-4v-8h4v-2h-4c-1.1,0-2,0.9-2,2v8H6V6h4v4c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V6.4l4,4V16h2v-6c0-0.3-0.1-0.5-0.3-0.7l-5-5C22.5,4.1,22.3,4,22,4H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h10V26z M12,6h8v4h-8V6z"/><circle class="SaveCircle" cx="23" cy="23" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span></div>
+        <div class="pipe-name">Notebook Generator</div>
+        <div class="pipe-desc">Colab-ready .ipynb</div>
+      </div>
+    </div>
+    </div><!-- /pipeline-visual-wrap -->
+
+    <div class="notebook-preview fade-in">
+      <div class="nb-header">
+        <span class="mi" style="color:var(--dh-text-secondary)"><svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor"><path d="M16,26h-4v-8h4v-2h-4c-1.1,0-2,0.9-2,2v8H6V6h4v4c0,1.1,0.9,2,2,2h8c1.1,0,2-0.9,2-2V6.4l4,4V16h2v-6c0-0.3-0.1-0.5-0.3-0.7l-5-5C22.5,4.1,22.3,4,22,4H6C4.9,4,4,4.9,4,6v20c0,1.1,0.9,2,2,2h10V26z M12,6h8v4h-8V6z"/><circle class="SaveCircle" cx="23" cy="23" r="5" fill="none" stroke="currentColor" stroke-width="2"/></svg></span>
+        <span class="nb-header-title">unemployment_tx_ca_comparison.ipynb</span>
+        <span class="nb-header-badge tag-orange">Colab Ready</span>
+      </div>
+      <div class="nb-cells">
+        <div class="nb-cell">
+          <div class="nb-cell-header">
+            <span class="nb-cell-type md">Markdown</span>
+            <span style="margin-left:auto">Introduction</span>
+          </div>
+          <div class="nb-cell-body markdown">
+            <strong>Unemployment Rate: Texas vs California (2019–2024)</strong><br>
+            <span style="color:var(--dh-text-secondary)">This notebook compares annual unemployment rates between Texas and California using Bureau of Labor Statistics (BLS) Local Area Unemployment Statistics data.</span>
+          </div>
+        </div>
+        <div class="nb-cell">
+          <div class="nb-cell-header">
+            <span class="nb-cell-type code">Code</span>
+            <span style="margin-left:auto">Data Retrieval · BLS API</span>
+          </div>
+          <div class="nb-cell-body">
+            <span class="syn-kw">import</span> requests, pandas <span class="syn-kw">as</span> pd<br>
+            <br>
+            <span class="syn-cmt"># BLS Series: LAUST480000000000003 (TX), LAUST060000000000003 (CA)</span><br>
+            <span class="syn-var">series_ids</span> = [<span class="syn-str">"LAUST480000000000003"</span>, <span class="syn-str">"LAUST060000000000003"</span>]<br>
+            <span class="syn-var">df</span> = fetch_bls_series(series_ids, start_year=<span class="syn-num">2019</span>, end_year=<span class="syn-num">2024</span>)
+          </div>
+        </div>
+        <div class="nb-cell">
+          <div class="nb-cell-header">
+            <span class="nb-cell-type md">Markdown</span>
+            <span style="margin-left:auto">Citations</span>
+          </div>
+          <div class="nb-cell-body markdown">
+            <span style="color:var(--dh-text-secondary)">1. U.S. Bureau of Labor Statistics. (2024). <em>Local Area Unemployment Statistics</em>. Series LAUST480000000000003. Retrieved May 2024.<br>
+            2. U.S. Bureau of Labor Statistics. (2024). <em>Local Area Unemployment Statistics</em>. Series LAUST060000000000003. Retrieved May 2024.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="get-started">
+  <div class="container-sm">
+    <span class="tag-on-dark-blue">Get Started</span>
+    <h2>Ready to Ask Your First Question?</h2>
+    <p>Join researchers, journalists, and policy teams who use Data Concierge to get authoritative, citable answers from federal data — in seconds.</p>
+    <div class="cta-actions">
+      <a href="mailto:minhajuddin2510@gmail.com?subject=Data Concierge Access Request" class="btn-primary-inv"><span class="mi"><svg viewBox="0 0 32 32" width="16" height="16" fill="currentColor" class="SendAltMotion"><path class="SendAltTop" d="M27.71,4.29a1,1,0,0,0-1.05-.23l-22,8a1,1,0,0,0,0,1.87l9.6,3.84,3.84,9.6A1,1,0,0,0,19,28h0a1,1,0,0,0,.92-.66l8-22A1,1,0,0,0,27.71,4.29ZM19,24.2l-2.79-7L21,12.41,19.59,11l-4.83,4.83L7.8,13,25.33,6.67Z"/></svg></span> Request Access</a>
+      <a href="https://github.com/minhajuddin2510/data-concierge" class="btn-ghost-inv"><span class="mi"><svg viewBox="0 0 16 16" width="16" height="16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg></span> View on GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="./assets/logo-datHere-white.png" alt="datHere" />
+        <span class="footer-product-name">Data Concierge</span>
+      </div>
+      <div class="footer-links">
+        <a href="#features">Features</a>
+        <a href="#data-sources">Data Sources</a>
+        <a href="#use-cases">Use Cases</a>
+        <a href="#pipeline">Architecture</a>
+      </div>
+      <div class="footer-copy">Built with Claude · Powered by federal open data</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Motion icon hover trigger
+  const animTargets = document.querySelectorAll(
+    '.feature-card, .source-card, .use-case-card, .pipe-step, .notebook-preview, ' +
+    '.btn-primary, .btn-secondary, .btn-primary-inv, .btn-ghost-inv, .btn-nav'
+  );
+  animTargets.forEach(el => {
+    el.addEventListener('mouseenter', () => el.setAttribute('data-animating', ''));
+    el.addEventListener('mouseleave', () => el.removeAttribute('data-animating'));
+  });
+
+  const observer = new IntersectionObserver(
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+    { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
+  );
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Pipeline progress bar — scroll triggered
+  const pipeSection = document.getElementById('pipeline');
+  const pipeProgressFill = document.getElementById('pipeProgressFill');
+  function updatePipeProgress() {
+    if (!pipeSection || !pipeProgressFill) return;
+    const rect = pipeSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    const raw = (vh - rect.top) / (rect.height + vh);
+    pipeProgressFill.style.width = (Math.max(0, Math.min(1, raw)) * 100) + '%';
+  }
+  updatePipeProgress();
+
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  window.addEventListener('scroll', () => {
+    updatePipeProgress();
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 56) current = s.id; });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current
+        ? 'var(--dh-text-primary)' : '';
+    });
+  }, { passive: true });
+</script>
+</body>
+</html>
