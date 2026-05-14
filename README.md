@@ -1,8 +1,6 @@
 # datHere Design System
 
-A design system for **[datHere](https://dathere.com)** — a data-infrastructure
-company that builds tools for publishing, validating, wrangling, and discovering
-tabular data. This repo collects the visual foundations, brand assets, content
+Design system for **[datHere](https://dathere.com)**. This repo collects the visual foundations, brand assets, content
 guidance, and UI-kit references a designer or agent needs to build products that
 look and feel like datHere.
 
