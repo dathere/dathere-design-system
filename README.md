@@ -3,14 +3,13 @@
 A design system for **[datHere](https://dathere.com)** — a data-infrastructure
 company that builds tools for publishing, validating, wrangling, and discovering
 tabular data. This repo collects the visual foundations, brand assets, content
-guidance, and UI-kit recreations a design agent needs to mock or build
-products that look and feel like datHere.
+guidance, and UI-kit references a designer or agent needs to build products that
+look and feel like datHere.
 
-> **TL;DR for designers** — datHere is built on top of the **IBM Carbon
-> Design System** ("white" theme) with a tightly-scoped brand-blue accent.
-> If you're making a datHere artifact, default to: Carbon-style square
-> rectangles, **IBM Plex Sans / Mono**, generous whitespace, the brand blue
-> `#0F62FE` for action, navy `#001D6C` for moments of brand weight.
+> **TL;DR** — datHere is built on the **IBM Carbon Design System** ("white" theme)
+> with a tightly-scoped brand-blue accent. Default to: Carbon-style square
+> rectangles, **IBM Plex Sans / Mono**, generous whitespace, brand blue `#0F62FE`
+> for action, navy `#001D6C` for brand weight.
 
 ---
 
@@ -26,38 +25,12 @@ covers the full data lifecycle:
 | **qsv pro** ([qsvpro.dathere.com](https://qsvpro.dathere.com)) | A desktop GUI wrapped around qsv — drop a spreadsheet, get instant stats, type-inference, validation, and an LLM-powered describegpt workflow. |
 | **datHere AI Chatbot** | A natural-language layer on top of a CKAN portal — ask questions, get back grounded SQL/CSV answers. |
 | **AI-Ready Data** | Consulting + tooling around making messy public datasets actually usable by LLMs (schema inference, validation, tag vocabularies). |
-| **Water Data Practice** | Sector-specific portals (e.g. [catalog.newmexicowaterdata.org](https://catalog.newmexicowaterdata.org), Boerne TX) built on the datHere CKAN distribution. |
+| **Water Data Practice** | Sector-specific portals built on the datHere CKAN distribution. |
 
 The audience is **data engineers, open-data publishers, civic-tech teams, and
 analysts** — practitioners who care about correctness, performance, and FAIR
 principles, not flashy marketing surfaces. The visual register reflects that:
 serious, dense, square, blue.
-
-## Sources used
-
-Everything here was derived from materials the project owner provided:
-
-- **Logo** — `uploads/logo.datHere.primary.dark_.bg_ (1).png`
-- **Design system reference** — [`carbon-design-system/carbon`](https://github.com/carbon-design-system/carbon) (Apache-2.0).
-  We pulled the `white` theme tokens (`packages/themes/src/white.js`) and
-  remapped them to `--dh-*` CSS vars in `colors_and_type.css`. Carbon is the
-  inferred system of record because the wordmark blue exactly matches Carbon's
-  `blue60` (`#0F62FE`) and the icon navy matches `blue90` (`#001D6C`).
-- **datHere repos browsed for product context**:
-  - `dathere/qsv` — flagship Rust CLI (README + docs/) — used for **copy/voice only**
-  - `a5dur/de-intern-guide` — Docusaurus intern guide (canonical logo PNGs)
-  - `dathere/qsv-pro-releases` — desktop GUI release notes — used for **copy only**
-
-> ⚠ **Flagged 2026-05-14:** `dathere/nmwd-theme` and `dathere/ckanext-boernetx_theme`
-> were originally used as design sources for the `ui_kits/` directory. Those products
-> were built **without any design system or visual guidelines**. Any patterns inferred
-> from them should be considered suspect. The `ui_kits/` files are flagged for review
-> and possible replacement — see individual `README.md` files in each kit directory.
-
-> ⚠️ If you have access to a Figma file, a brand-book PDF, or production
-> screenshots of `qsv pro`, please attach them — the kit fidelity goes up
-> sharply when we can read the real component code rather than reconstruct
-> from CKAN themes and Carbon defaults.
 
 ---
 
@@ -71,13 +44,14 @@ Everything here was derived from materials the project owner provided:
 ├── assets/
 │   ├── logo-*.png             ← brand marks (light/dark/primary/white)
 │   ├── favicon.ico
-│   ├── icons/                 ← topical SVG icons pulled from CKAN themes
-│   ├── images/                ← hero/photographic background assets
-│   └── screenshots/           ← qsv pro + qsv.dathere.com captures (reference only)
-├── preview/                   ← small HTML cards registered as Design System tab assets
+│   ├── icons/carbon/          ← full Carbon icon set (2,764 SVGs, all 4 sizes)
+│   ├── icons/carbon-motion/   ← 148 Carbon animated icons (CSS keyframe bundles)
+│   ├── images/                ← hero/photographic background assets (empty — add yours)
+│   └── screenshots/           ← product screenshots for reference (empty — add yours)
+├── preview/                   ← design system browser (open preview/index.html)
 ├── ui_kits/
-│   ├── marketing/             ← marketing-site UI kit (datHere.com style)
-│   └── ckan-portal/           ← public CKAN data-portal UI kit
+│   ├── marketing/             ← ⚠ FLAGGED FOR REVIEW — see ui_kits/marketing/README.md
+│   └── ckan-portal/           ← ⚠ FLAGGED FOR REVIEW — see ui_kits/ckan-portal/README.md
 └── fonts/                     ← (empty — see "Type" below)
 ```
 
@@ -85,13 +59,12 @@ Everything here was derived from materials the project owner provided:
 
 ## CONTENT FUNDAMENTALS
 
-How datHere writes copy, derived from `qsv` README, the intern guide, and the
-CKAN theme microcopy.
+How datHere writes copy.
 
 **Voice — direct, technical, lightly playful.** Writers assume the reader
 already knows what a CSV is. Sentences are short and load-bearing. Capabilities
 are described with concrete verbs (*"slice"*, *"sniff"*, *"behead"*, *"dedup"*,
-*"safenames"*) — most qsv command names are themselves the docs.
+*"safenames"*).
 
 **Person — second-person + product-as-actor.** Marketing copy says *"you"* and
 *"your data"*. Documentation uses imperative mood (*"Run `qsv stats`…"*).
@@ -101,8 +74,7 @@ contexts.
 **Casing — Title Case for nav and section headers; sentence case for body;
 **lowercase** for the wordmark itself**. The brand word is always written
 **datHere** — lowercase `d`, lowercase `at`, capital `H`, lowercase `ere`.
-Never *DatHere*, *Dathere*, or *DATHERE*. The wordmark logo only renders
-the `dat` glyphs; the full word appears in the inline text version.
+Never *DatHere*, *Dathere*, or *DATHERE*.
 
 **Numbers and metrics are flexed often.** *"11.87 seconds for a 15 GB, 28M-row
 NYC 311 dataset"* — comparative speed numbers, file sizes, row counts. These
@@ -118,10 +90,9 @@ and command names are scattered through prose, not relegated to docs. Use
 status row (`🚀 multithreaded`, `📇 indexed`) — but only in **lists / tables /
 legends**, never inside paragraphs of marketing copy. Body prose stays sober.
 
-**Emoji are used as iconography, not as decoration.** The qsv command tables
-use them as glyphs for feature flags (`🐻‍❄️` = polars-accelerated, `📇` = uses
-an index, `🤖` = AI). They are functional. **Do not** sprinkle emoji into
-hero headers, button labels, or marketing taglines.
+**Emoji are used as iconography, not as decoration.** They are functional glyphs
+in command tables and feature legends. **Do not** sprinkle emoji into hero
+headers, button labels, or marketing taglines.
 
 **Acronyms and jargon are explained inline on first use** — *"FAIR (Findable,
 Accessible, Interoperable, Reusable)"*, *"DMS (Data Management System)"*,
@@ -137,7 +108,7 @@ Accessible, Interoperable, Reusable)"*, *"DMS (Data Management System)"*,
 >
 > *"Hi-ho 'Quicksilver' away!"* (under the qsv logo — wink to the brand name)
 >
-> *"Powering data hubs and data portals."* (CKAN positioning, paraphrased)
+> *"Powering data hubs and data portals."* (CKAN positioning)
 
 ---
 
@@ -166,25 +137,17 @@ to a Carbon token; the corresponding CSS variable is in `colors_and_type.css`.
 interactive elements (links, primary buttons, focus rings, active tabs) and as
 the icon-mark navy on logos/large brand moments. Everything else is grayscale.
 Avoid using brand blue for headers or large filled surfaces — Carbon reserves
-saturated blue for action. CKAN themes do break this rule (full navy footers,
-blue masthead bars) but those are heavier marketing-portal contexts, not core
-product UI.
+saturated blue for action.
 
-**Gradients** — used sparingly, never in core product UI. The CKAN AI-chat
-surface has a very gentle blue-tinted aura (Carbon's experimental AI tokens),
-but that's the only place. No marketing-bro purple-blue gradients.
+**Gradients** — used sparingly, never in core product UI. AI surfaces may use
+a very gentle blue-tinted aura (Carbon's experimental AI tokens). No
+marketing-bro purple-blue gradients.
 
 ### Type
 
 - **Sans (UI and body)** — **IBM Plex Sans**. Weights used: 300, 400, 500, 600, 700.
 - **Mono (code, command names, data tables)** — **IBM Plex Mono**.
 - **Serif (rare — long-form editorial only)** — **IBM Plex Serif**.
-
-The codebases observed actually use a *mixture* of Helvetica Neue / Montserrat /
-Mulish / Poppins in different CKAN themes — that's because each CKAN deployment
-is a customer instance, not the corporate brand. For the corporate brand we
-follow Carbon and ship **IBM Plex** as the canonical type. See the substitution
-note below.
 
 - **Productive scale** (dense UI) — `--dh-type-body-short-01` (14/18), heading-01
   through heading-07. Use these in tables, forms, side panels.
@@ -209,8 +172,7 @@ note below.
 - **Carbon is famously square.** Default border-radius for cards, inputs,
   buttons, modals is **0**. We expose `--dh-radius-sm` (2 px) for badges and
   `--dh-radius-md` (4 px) for the occasional marketing tile.
-- **Pills (`--dh-radius-pill`, 999 px)** are reserved for *tag/chip* surfaces
-  in CKAN's dataset listing — never for buttons.
+- **Pills (`--dh-radius-pill`, 999 px)** are reserved for tag/chip surfaces — never for buttons.
 - **1 px borders** in `--dh-border-subtle-01`. Cards are bordered, not
   shadowed. When a card is interactive, a 2 px left border in `--dh-blue-60`
   appears on hover/selected (Carbon "tile" pattern).
@@ -227,10 +189,9 @@ note below.
 
 - **Solid white is the default page background.** Inverted dark sections use
   `--dh-gray-80` or `--dh-blue-90` (the brand navy).
-- **Hero imagery** when present is **photographic, on-location, daylight**
-  (e.g. the NMWD elvado.jpeg — a real reservoir at El Vado, NM). Cool tones.
-  Slight desaturation. No grain, no Instagram filters. Often overlaid with a
-  blue or navy 60% opacity scrim for text legibility.
+- **Hero imagery** when present is **photographic, on-location, daylight**.
+  Cool tones. Slight desaturation. No grain, no Instagram filters. Often
+  overlaid with a blue or navy 60% opacity scrim for text legibility.
 - **No hand-drawn illustrations, no repeating patterns, no isometric scenes,
   no 3D blob art.** This is a serious-products brand.
 - **Charts and tables are themselves the artwork.** Showcase the data UI
@@ -299,33 +260,24 @@ Browse and search the full icon set at `preview/brand-iconography.html`.
 
 **Stroke weight:** 1.5 px on a 16-grid (32-grid in display sizes). Color inherited from `currentColor`.
 
+**Animated icons:** 148 CSS keyframe-animated icons are in `assets/icons/carbon-motion/`.
+Browse at `preview/motion-iconography.html`. Trigger via `data-animating` attribute on the wrapper div.
+
 **Fallback (substitute): Lucide.** When Carbon icons can't be used,
 [Lucide](https://lucide.dev) is the closest free alternative — same outlined
 geometric register, 1.5 px stroke, mono-color. **⚠ Flag this as a substitution**
 in any deliverable that uses Lucide instead of Carbon.
 
-**Domain-specific topical icons** (water-quality, climate, energy glyphs from the
-NMWD CKAN theme) are **not** in this folder — they are customer-instance icons,
-not the corporate icon system.
-
-**Emoji as icons** — only in command tables / feature legends, the way qsv's
-README uses them (`📇 indexed`, `🚀 multithreaded`, `🤖 AI`, `🐻‍❄️ polars`,
-`🪄 automagical`). Never in hero headers or buttons.
-
-**Emoji as icons** — only in command tables / feature legends, the way qsv's
-README uses them (`📇 indexed`, `🚀 multithreaded`, `🤖 AI`, `🐻‍❄️ polars`,
-`🪄 automagical`). Never in hero headers or buttons.
+**Emoji as icons** — only in command tables / feature legends. Never in hero headers or buttons.
 
 **Unicode characters as glyphs** — okay for arrows (`→`, `←`, `↗`) and math
 operators in dense data UIs (`±`, `≈`, `∑`). Not for decoration.
 
 **Logo files (in `assets/`)**
-- `logo-datHere-primary-dark-bg.png` — primary mark on dark backgrounds
-  (wordmark blue + dark-navy hex icon).
+- `logo-datHere-primary-dark-bg.png` — primary mark on dark backgrounds.
 - `logo-datHere-light.png` — for light backgrounds.
 - `logo-datHere-dark.png` — single-color dark.
-- `logo-datHere-white.png` — single-color white (for use on `--dh-blue-90`
-  navy footer bars etc).
+- `logo-datHere-white.png` — single-color white (for navy footer bars etc).
 - `favicon.ico` — 16/32 favicon, the hex-icon glyph only.
 
 ---
@@ -334,37 +286,29 @@ operators in dense data UIs (`±`, `≈`, `∑`). Not for decoration.
 
 > ⚠ **Substitution flag:** This kit does **not** ship local IBM Plex
 > Sans/Mono/Serif TTF/WOFF2 files. `colors_and_type.css` loads them from
-> Google Fonts at runtime instead. For production work, please drop the
-> official Plex font files in `fonts/` and the system will pick them up
-> automatically (override the `@import` at the top of
-> `colors_and_type.css`). IBM Plex is open-sourced under the OFL —
+> Google Fonts at runtime instead. For production work, drop the official Plex
+> font files in `fonts/` and override the `@import` at the top of
+> `colors_and_type.css`. IBM Plex is open-sourced under the OFL —
 > [github.com/IBM/plex](https://github.com/IBM/plex).
 
-If `IBM Plex Sans` fails to load entirely, the stack falls back to
-`-apple-system → BlinkMacSystemFont → Helvetica Neue → Helvetica → Arial`
-which is close in proportion (the original NMWD theme also fell back to
-Helvetica Neue, so this is consistent with historical datHere CSS).
+If `IBM Plex Sans` fails to load, the stack falls back to
+`-apple-system → BlinkMacSystemFont → Helvetica Neue → Helvetica → Arial`.
 
 ---
 
 ## INDEX — what's in this folder
 
 - `colors_and_type.css` — load this first in any HTML you create.
-- `assets/` — every brand image, logo variant, and topical icon.
-- `preview/` — small spec cards that render in the project's Design System
-  tab. Browse `preview/index.html` if you want them all on one page.
-- `ui_kits/marketing/` — ⚠ **FLAGGED FOR REVIEW** — JSX components partially inferred
-  from design-systemless product repos. Do not use as canonical reference.
-- `ui_kits/ckan-portal/` — ⚠ **FLAGGED FOR REVIEW** — derived from `nmwd-theme` /
-  `ckanext-boernetx_theme` templates. Same caveat.
-- `SKILL.md` — manifest that lets this folder be packaged as a Claude
-  Skill for use in Claude Code or Agent SDK contexts.
+- `assets/` — every brand image, logo variant, and icon set.
+- `preview/` — design system browser. Open `preview/index.html`.
+- `ui_kits/marketing/` — ⚠ **FLAGGED FOR REVIEW** — do not use as canonical reference.
+- `ui_kits/ckan-portal/` — ⚠ **FLAGGED FOR REVIEW** — do not use as canonical reference.
+- `scripts/` — build scripts (e.g. `build-motion-icons.js` to regenerate animated icon assets).
+- `SKILL.md` — manifest for use as a Claude Skill.
 
 ---
 
-## Iterate with us
+## Credits
 
-If you have **Figma URLs, screenshots of qsv pro at full resolution, a brand
-guidelines PDF, or production CSS for `dathere.com` proper** — please attach
-them. The kit gets dramatically better when it can mimic real components
-instead of reasoning from CKAN theme remnants and Carbon defaults.
+Built on the [IBM Carbon Design System](https://carbondesignsystem.com) — Apache-2.0.
+Animated icons from [carbon-design-system/icons-motion](https://github.com/carbon-design-system/icons-motion) — Apache-2.0.
